@@ -6,15 +6,13 @@
 class Button
 {
 public:
-	sf::RectangleShape m_shape;
-	sf::Text m_string;
-
-	bool disabled;
-	bool enabled;
-
-	Button(const sf::Vector2f &size, const std::string string);
+	Button(const sf::Vector2f &size, const std::string buttontext);
 	Button();
 	~Button();
+
+	sf::Text string;
+	bool disabled;
+	bool enabled;
 
 	void setPosition(const sf::Vector2f pos);
 	void setString(const std::string string);
@@ -29,7 +27,8 @@ public:
 	void draw(sf::RenderWindow *window);
 
 private:
-	sf::Font m_font;
+	sf::RectangleShape shape;
+	sf::Font stringFont;
 };
 
 #endif /* BUTTON_HPP */
