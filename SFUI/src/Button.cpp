@@ -1,6 +1,7 @@
 #include "Button.hpp"
 
 //#include <ENGINE\Logger.hpp>
+namespace SFUI {
 
 Button::Button(const sf::Vector2f &size, const std::string string)
 {
@@ -19,7 +20,11 @@ Button::Button(const sf::Vector2f &size, const std::string string)
 
 Button::Button()
 {
+	#ifdef __APPLE__
+	if (stringFont.loadFromFile("C://System//Library//Fonts//Arial.ttf")) // I have no idea if this is correct.
+	#else
 	if (stringFont.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
+	#endif
 		buttonString.setFont(stringFont);
 
 	buttonString.setFillColor(sf::Color::Black);
@@ -40,24 +45,15 @@ void Button::setPosition(const sf::Vector2f newpos)
 void Button::setString(const std::string newString)
 {
 	buttonString.setString(newString);
+	buttonString.setOrigin(sf::Vector2f(buttonString.getLocalBounds().width / 2, buttonString.getLocalBounds().height - 1)); // middle of the text.
 
-	if (newString.find('g') != std::string::npos ||
-		newString.find('j') != std::string::npos ||
-		newString.find('p') != std::string::npos ||
-		newString.find('q') != std::string::npos ||
-		newString.find('y') != std::string::npos)
-	{
-		shape.setSize(sf::Vector2f(buttonString.getLocalBounds().width + 10, buttonString.getLocalBounds().height + 6));
-		buttonString.setOrigin(buttonString.getLocalBounds().width / 2, buttonString.getLocalBounds().height - 4); // middle of the text.
-	}
-	else
-	{
-		shape.setSize(sf::Vector2f(buttonString.getLocalBounds().width + 10, buttonString.getLocalBounds().height + 10));
-		buttonString.setOrigin(buttonString.getLocalBounds().width / 2, buttonString.getLocalBounds().height - 1); // middle of the text.
-	}
-
+	shape.setSize(sf::Vector2f(buttonString.getLocalBounds().width + 14, buttonString.getLocalBounds().height + 6));
 	shape.setOrigin(sf::Vector2f(shape.getLocalBounds().width / 2, shape.getLocalBounds().height / 2));
-	buttonString.setPosition(shape.getPosition());
+
+	if (hasLettersThatHangBelowTheLine(newString))
+		buttonString.setPosition(sf::Vector2f(shape.getPosition().x - 2, shape.getPosition().y + 4));
+	else
+		buttonString.setPosition(sf::Vector2f(shape.getPosition().x - 2, shape.getPosition().y + 2));
 }
 
 void Button::setButtonColor(const sf::Color color)
@@ -81,30 +77,48 @@ void Button::setScale(const sf::Vector2f scale)
 	buttonString.setScale(scale);
 }
 
-void Button::setSize(const sf::Vector2f size)
-{
-	shape.setSize(sf::Vector2f(size.x, size.y));
-	buttonString.setCharacterSize(static_cast<int>(size.y) - 6);
-}
-
 void Button::disable()
 {
-	disabled = true;
+	enabled = false;
 
 	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 80));
 	buttonString.setFillColor(sf::Color(buttonString.getFillColor().r, buttonString.getFillColor().g, buttonString.getFillColor().b, 80));
+
+	disabled = true;
 }
 
 void Button::enable()
 {
-	enabled = true;
+	disabled = false;
 
 	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 255));
 	buttonString.setFillColor(sf::Color(buttonString.getFillColor().r, buttonString.getFillColor().g, buttonString.getFillColor().b, 255));
+
+	enabled = true;
 }
 
 void Button::draw(sf::RenderWindow *window)
 {
 	window->draw(shape);
 	window->draw(buttonString);
+}
+
+// private:
+
+bool Button::hasLettersThatHangBelowTheLine(std::string str)
+{
+	if (str.find('g') != std::string::npos ||
+		str.find('j') != std::string::npos ||
+		str.find('p') != std::string::npos ||
+		str.find('q') != std::string::npos ||
+		str.find('y') != std::string::npos)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 }

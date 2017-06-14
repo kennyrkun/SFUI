@@ -1,0 +1,8 @@
+it's meant to not need objects; you make things when you need them.
+
+elements tend to follow material design
+
+Color Scheme - Dark:
+- Background: 30, 30, 30
+- Button: 100, 100, 100
+- Button Outline:

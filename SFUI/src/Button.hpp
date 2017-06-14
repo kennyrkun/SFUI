@@ -3,6 +3,8 @@
 
 #include <SFML\Graphics.hpp>
 
+namespace SFUI {
+
 class Button
 {
 public:
@@ -15,16 +17,15 @@ public:
 	bool enabled;
 
 	void setPosition(const sf::Vector2f pos);
-//	void getPosition();
+	//	void getPosition();
 	void setString(const std::string buttonString);
-//	void getString();
+	//	void getString();
 	void setButtonColor(const sf::Color color);
-//	void getButtonColor();
+	//	void getButtonColor();
 	void setStringColor(const sf::Color color);
-//	void getStringColor();
+	//	void getStringColor();
 	void setStringStyle(const sf::Text::Style style);
 	void setScale(const sf::Vector2f scale);
-	void setSize(const sf::Vector2f size);
 	void disable();
 	void enable();
 
@@ -33,6 +34,10 @@ public:
 private:
 	sf::RectangleShape shape;
 	sf::Font stringFont;
+
+	bool hasLettersThatHangBelowTheLine(std::string str);
 };
+
+}
 
 #endif /* BUTTON_HPP */
