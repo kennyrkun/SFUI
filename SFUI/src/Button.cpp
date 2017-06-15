@@ -27,8 +27,12 @@ Button::Button()
 	#endif
 		buttonString.setFont(stringFont);
 
+	buttonString.setCharacterSize(18);
+
 	buttonString.setFillColor(sf::Color::Black);
 	shape.setFillColor(sf::Color::White);
+//	shape.setOutlineColor(sf::Color::Black);
+//	shape.setOutlineThickness(2.0f);
 }
 
 Button::~Button()
@@ -51,9 +55,9 @@ void Button::setString(const std::string newString)
 	shape.setOrigin(sf::Vector2f(shape.getLocalBounds().width / 2, shape.getLocalBounds().height / 2));
 
 	if (hasLettersThatHangBelowTheLine(newString))
-		buttonString.setPosition(sf::Vector2f(shape.getPosition().x - 2, shape.getPosition().y + 4));
+		buttonString.setPosition(sf::Vector2f(shape.getPosition().x, shape.getPosition().y + 4));
 	else
-		buttonString.setPosition(sf::Vector2f(shape.getPosition().x - 2, shape.getPosition().y + 2));
+		buttonString.setPosition(sf::Vector2f(shape.getPosition().x, shape.getPosition().y + 2));
 }
 
 void Button::setButtonColor(const sf::Color color)
@@ -81,8 +85,8 @@ void Button::disable()
 {
 	enabled = false;
 
-	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 80));
-	buttonString.setFillColor(sf::Color(buttonString.getFillColor().r, buttonString.getFillColor().g, buttonString.getFillColor().b, 80));
+	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 120));
+	buttonString.setFillColor(sf::Color(buttonString.getFillColor().r, buttonString.getFillColor().g, buttonString.getFillColor().b, 120));
 
 	disabled = true;
 }
