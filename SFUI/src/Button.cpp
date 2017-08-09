@@ -43,6 +43,10 @@ void Button::setPosition(const sf::Vector2f newpos)
 	m_string.setPosition(m_shape.getPosition());
 }
 
+sf::Vector2f Button::getPosition()
+{
+	return m_shape.getPosition();
+
 void Button::setString(const std::string string)
 {
 	m_string.setString(string);

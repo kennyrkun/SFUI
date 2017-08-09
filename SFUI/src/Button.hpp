@@ -19,6 +19,8 @@ namespace SFUI
 		~Button();
 
 		void setPosition(const sf::Vector2f pos);
+		sf::Vector2f getPosition();
+
 		void setString(const std::string string);
 		void setButtonColor(const sf::Color color);
 		void setStringColor(const sf::Color color);
