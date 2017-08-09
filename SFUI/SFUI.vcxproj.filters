@@ -13,12 +13,18 @@
     <ClCompile Include="src\SFUI.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scrollbar.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SFUI.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="src\Button.hpp">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scrollbar.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

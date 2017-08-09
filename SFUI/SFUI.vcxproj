@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\Scrollbar.cpp" />
     <ClCompile Include="src\SFUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Button.hpp" />
+    <ClInclude Include="src\Scrollbar.hpp" />
     <ClInclude Include="src\SFUI.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
