@@ -3,41 +3,32 @@
 
 #include <SFML\Graphics.hpp>
 
-namespace SFUI {
-
 class Button
 {
 public:
-	Button(const sf::Vector2f &size, const std::string buttonString);
-	Button();
-	~Button();
+	sf::RectangleShape m_shape;
+	sf::Text m_string;
 
-	sf::Text buttonString;
 	bool disabled;
 	bool enabled;
 
+	Button(const std::string string);
+	Button();
+	~Button();
+
 	void setPosition(const sf::Vector2f pos);
-	//	void getPosition();
-	void setString(const std::string buttonString);
-	//	void getString();
+	void setString(const std::string string);
 	void setButtonColor(const sf::Color color);
-	//	void getButtonColor();
 	void setStringColor(const sf::Color color);
-	//	void getStringColor();
 	void setStringStyle(const sf::Text::Style style);
-	void setScale(const sf::Vector2f scale);
+	void setSize(const sf::Vector2f size);
 	void disable();
 	void enable();
 
-	void draw(sf::RenderWindow *window);
+	void draw(sf::RenderWindow& window);
 
 private:
-	sf::RectangleShape shape;
-	sf::Font stringFont;
-
-	bool hasLettersThatHangBelowTheLine(std::string str);
+	sf::Font m_font;
 };
-
-}
 
 #endif /* BUTTON_HPP */

@@ -1,38 +1,34 @@
 #include "Button.hpp"
 
-//#include <ENGINE\Logger.hpp>
-namespace SFUI {
-
-Button::Button(const sf::Vector2f &size, const std::string string)
+Button::Button(const std::string string)
 {
-	if (stringFont.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
-		buttonString.setFont(stringFont);
+	if (m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
+		m_string.setFont(m_font);
 
-	buttonString.setString(string);
-	buttonString.setFillColor(sf::Color::Black);
-	shape.setFillColor(sf::Color::White);
+	m_string.setString(string);
+	m_string.setFillColor(sf::Color::Black);
+	m_shape.setFillColor(sf::Color(240, 240, 240));
+	m_shape.setOutlineThickness(1);
+	m_shape.setOutlineColor(sf::Color(158, 158, 158));
 
-	shape.setSize(sf::Vector2f(size.x, size.y));
-	buttonString.setCharacterSize(static_cast<int>(size.y) - 6);
+//	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
+	m_string.setCharacterSize(14);
 
 	setString(string);
 }
 
 Button::Button()
 {
-	#ifdef __APPLE__
-	if (stringFont.loadFromFile("C://System//Library//Fonts//Arial.ttf")) // I have no idea if this is correct.
-	#else
-	if (stringFont.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
-	#endif
-		buttonString.setFont(stringFont);
+	if (m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
+		m_string.setFont(m_font);
 
-	buttonString.setCharacterSize(18);
+	m_string.setFillColor(sf::Color::Black);
+	m_shape.setFillColor(sf::Color(240, 240, 240));
+	m_shape.setOutlineThickness(1);
+	m_shape.setOutlineColor(sf::Color(158, 158, 158));
 
-	buttonString.setFillColor(sf::Color::Black);
-	shape.setFillColor(sf::Color::White);
-//	shape.setOutlineColor(sf::Color::Black);
-//	shape.setOutlineThickness(2.0f);
+	//	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
+	m_string.setCharacterSize(14);
 }
 
 Button::~Button()
@@ -42,87 +38,72 @@ Button::~Button()
 
 void Button::setPosition(const sf::Vector2f newpos)
 {
-	shape.setPosition(newpos);
-	buttonString.setPosition(shape.getPosition());
+	m_shape.setPosition(newpos);
+	m_string.setPosition(m_shape.getPosition());
 }
 
-void Button::setString(const std::string newString)
+void Button::setString(const std::string string)
 {
-	buttonString.setString(newString);
-	buttonString.setOrigin(sf::Vector2f(buttonString.getLocalBounds().width / 2, buttonString.getLocalBounds().height - 1)); // middle of the text.
+	m_string.setString(string);
 
-	shape.setSize(sf::Vector2f(buttonString.getLocalBounds().width + 14, buttonString.getLocalBounds().height + 6));
-	shape.setOrigin(sf::Vector2f(shape.getLocalBounds().width / 2, shape.getLocalBounds().height / 2));
-
-	if (hasLettersThatHangBelowTheLine(newString))
-		buttonString.setPosition(sf::Vector2f(shape.getPosition().x, shape.getPosition().y + 4));
+	if (string.find('g') != std::string::npos ||
+		string.find('j') != std::string::npos ||
+		string.find('p') != std::string::npos ||
+		string.find('q') != std::string::npos ||
+		string.find('y') != std::string::npos)
+	{
+		m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, m_string.getLocalBounds().height + 6));
+		m_string.setOrigin(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height - 4); // middle of the text.
+	}
 	else
-		buttonString.setPosition(sf::Vector2f(shape.getPosition().x, shape.getPosition().y + 2));
+	{
+		m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, m_string.getLocalBounds().height + 10));
+		m_string.setOrigin(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height - 1); // middle of the text.
+	}
+
+	m_shape.setOrigin(sf::Vector2f(m_shape.getLocalBounds().width / 2, m_shape.getLocalBounds().height / 2));
+	m_string.setPosition(static_cast<int>(m_shape.getPosition().x), static_cast<int>(m_shape.getPosition().y));
 }
 
 void Button::setButtonColor(const sf::Color color)
 {
-	shape.setFillColor(color);
+	m_shape.setFillColor(color);
 }
 
 void Button::setStringColor(const sf::Color color)
 {
-	buttonString.setFillColor(color);
+	m_string.setFillColor(color);
 }
 
 void Button::setStringStyle(const sf::Text::Style style)
 {
-	buttonString.setStyle(style);
+	m_string.setStyle(style);
 }
 
-void Button::setScale(const sf::Vector2f scale)
+void Button::setSize(const sf::Vector2f size)
 {
-	shape.setScale(scale);
-	buttonString.setScale(scale);
+	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
+//	m_string.setCharacterSize(static_cast<int>(size.y) - 6);
 }
 
 void Button::disable()
 {
-	enabled = false;
-
-	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 120));
-	buttonString.setFillColor(sf::Color(buttonString.getFillColor().r, buttonString.getFillColor().g, buttonString.getFillColor().b, 120));
-
 	disabled = true;
+
+	m_shape.setFillColor(sf::Color(m_shape.getFillColor().r, m_shape.getFillColor().g, m_shape.getFillColor().b, 80));
+	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 80));
 }
 
 void Button::enable()
 {
-	disabled = false;
-
-	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 255));
-	buttonString.setFillColor(sf::Color(buttonString.getFillColor().r, buttonString.getFillColor().g, buttonString.getFillColor().b, 255));
-
 	enabled = true;
+
+	m_shape.setFillColor(sf::Color(m_shape.getFillColor().r, m_shape.getFillColor().g, m_shape.getFillColor().b, 255));
+	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 255));
 }
 
-void Button::draw(sf::RenderWindow *window)
+void Button::draw(sf::RenderWindow& window)
 {
-	window->draw(shape);
-	window->draw(buttonString);
-}
-
-// private:
-
-bool Button::hasLettersThatHangBelowTheLine(std::string str)
-{
-	if (str.find('g') != std::string::npos ||
-		str.find('j') != std::string::npos ||
-		str.find('p') != std::string::npos ||
-		str.find('q') != std::string::npos ||
-		str.find('y') != std::string::npos)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
+	window.draw(m_shape);
+	window.draw(m_string);
 }
