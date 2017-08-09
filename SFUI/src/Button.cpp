@@ -1,5 +1,6 @@
 #include "Button.hpp"
 
+namespace SFUI {
 Button::Button(const std::string string)
 {
 	if (m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
@@ -107,3 +108,4 @@ void Button::draw(sf::RenderWindow& window)
 	window.draw(m_shape);
 	window.draw(m_string);
 }
+} // namespace
