@@ -28,7 +28,7 @@ Button::Button()
 	m_shape.setOutlineThickness(1);
 	m_shape.setOutlineColor(sf::Color(158, 158, 158));
 
-	//	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
+//	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
 	m_string.setCharacterSize(14);
 }
 
@@ -40,34 +40,41 @@ Button::~Button()
 void Button::setPosition(const sf::Vector2f newpos)
 {
 	m_shape.setPosition(newpos);
-	m_string.setPosition(m_shape.getPosition());
+
+	m_string.setPosition(static_cast<int>(m_shape.getPosition().x - m_string.getLocalBounds().width / 2), static_cast<int>(m_shape.getPosition().y - m_shape.getLocalBounds().height / 2 + 2));
+//	m_string.setPosition(m_shape.getPosition());
 }
 
 sf::Vector2f Button::getPosition()
 {
 	return m_shape.getPosition();
+}
 
 void Button::setString(const std::string string)
 {
 	m_string.setString(string);
 
+	/*
 	if (string.find('g') != std::string::npos ||
-		string.find('j') != std::string::npos ||
-		string.find('p') != std::string::npos ||
-		string.find('q') != std::string::npos ||
-		string.find('y') != std::string::npos)
-	{
-		m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, m_string.getLocalBounds().height + 6));
-		m_string.setOrigin(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height - 4); // middle of the text.
-	}
+ 		string.find('j') != std::string::npos ||
+ 		string.find('p') != std::string::npos ||
+ 		string.find('q') != std::string::npos ||
+ 		string.find('y') != std::string::npos)
+ 	{
+// 		m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, m_string.getLocalBounds().height + 7));
+// 		m_string.setOrigin(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height - 4); // middle of the text.
+ 	}
 	else
 	{
-		m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, m_string.getLocalBounds().height + 10));
-		m_string.setOrigin(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height - 1); // middle of the text.
+// 		m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, m_string.getLocalBounds().height + 10));
+// 		m_string.setOrigin(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height - 1); // middle of the text.
 	}
-
+	*/
+	
+	m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, 21));
 	m_shape.setOrigin(sf::Vector2f(m_shape.getLocalBounds().width / 2, m_shape.getLocalBounds().height / 2));
-	m_string.setPosition(static_cast<int>(m_shape.getPosition().x), static_cast<int>(m_shape.getPosition().y));
+
+	setPosition(m_shape.getPosition());
 }
 
 void Button::setButtonColor(const sf::Color color)
