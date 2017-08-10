@@ -6,16 +6,15 @@ Button::Button(const std::string string)
 	if (m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
 		m_string.setFont(m_font);
 
-	m_string.setString(string);
-	m_string.setFillColor(sf::Color::Black);
 	m_shape.setFillColor(sf::Color(240, 240, 240));
 	m_shape.setOutlineThickness(1);
 	m_shape.setOutlineColor(sf::Color(158, 158, 158));
 
-//	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
 	m_string.setCharacterSize(14);
-
+	m_string.setFillColor(sf::Color::Black);
 	setString(string);
+
+	this->enabled = true;
 }
 
 Button::Button()
@@ -28,8 +27,9 @@ Button::Button()
 	m_shape.setOutlineThickness(1);
 	m_shape.setOutlineColor(sf::Color(158, 158, 158));
 
-//	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
 	m_string.setCharacterSize(14);
+
+	this->enabled = true;
 }
 
 Button::~Button()
@@ -40,15 +40,10 @@ Button::~Button()
 void Button::setPosition(const sf::Vector2f newpos)
 {
 	m_shape.setPosition(newpos);
-
-	m_string.setPosition(static_cast<int>(m_shape.getPosition().x - m_string.getLocalBounds().width / 2), static_cast<int>(m_shape.getPosition().y - m_shape.getLocalBounds().height / 2 + 2));
-//	m_string.setPosition(m_shape.getPosition());
+	m_string.setPosition(static_cast<int>(m_shape.getPosition().x - (m_string.getLocalBounds().width / 2) - 2), static_cast<int>(m_shape.getPosition().y - (m_shape.getLocalBounds().height / 2) + 2));
 }
 
-sf::Vector2f Button::getPosition()
-{
-	return m_shape.getPosition();
-}
+// sf::Vector2f Button::getPosition()
 
 void Button::setString(const std::string string)
 {
@@ -71,8 +66,11 @@ void Button::setString(const std::string string)
 	}
 	*/
 	
-	m_shape.setSize(sf::Vector2f(m_string.getLocalBounds().width + 10, 21));
+	m_shape.setSize(sf::Vector2f((m_string.getLocalBounds().width + 10) * multiplier, 21 * multiplier));
 	m_shape.setOrigin(sf::Vector2f(m_shape.getLocalBounds().width / 2, m_shape.getLocalBounds().height / 2));
+
+	m_string.setCharacterSize(14 * multiplier);
+//	m_string.setOrigin(sf::Vector2f(m_string.getLocalBounds().width / 2, m_string.getLocalBounds().height / 2));
 
 	setPosition(m_shape.getPosition());
 }
@@ -92,15 +90,19 @@ void Button::setStringStyle(const sf::Text::Style style)
 	m_string.setStyle(style);
 }
 
-void Button::setSize(const sf::Vector2f size)
+void Button::setSizeMultiplier(const float multiplier_)
 {
-	m_shape.setSize(sf::Vector2f(static_cast<int>(size.x), static_cast<int>(size.y)));
-//	m_string.setCharacterSize(static_cast<int>(size.y) - 6);
+	multiplier = multiplier_;
+
+	setString(m_string.getString());
 }
+
+// float Button::getSizeMultiplier()
 
 void Button::disable()
 {
 	disabled = true;
+	enabled = false;
 
 	m_shape.setFillColor(sf::Color(m_shape.getFillColor().r, m_shape.getFillColor().g, m_shape.getFillColor().b, 80));
 	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 80));
@@ -109,6 +111,7 @@ void Button::disable()
 void Button::enable()
 {
 	enabled = true;
+	disabled = false;
 
 	m_shape.setFillColor(sf::Color(m_shape.getFillColor().r, m_shape.getFillColor().g, m_shape.getFillColor().b, 255));
 	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 255));
