@@ -3,7 +3,8 @@
 
 #include <SFML\Graphics.hpp>
 
-// version 0.1
+#include <string>
+
 namespace SFUI
 {
 
@@ -16,6 +17,8 @@ public:
 private:
 	sf::RenderWindow* boundWindow;
 };
+
+const std::string VERSION = "0.1.0";
 
 }
 

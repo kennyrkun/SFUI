@@ -36,6 +36,8 @@
     <ClInclude Include="src\TextButton.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="src\IconButton.hpp" />
+    <ClInclude Include="src\IconButton.hpp">
+      <Filter>Sources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

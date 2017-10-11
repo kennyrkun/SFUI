@@ -1,9 +1,13 @@
 #ifndef SCROLLBAR_HPP
 #define SCROLLBAR_HPP
 
+#include "Object.hpp"
+
 #include <SFML\Graphics.hpp>
 
-class Scrollbar : public sf::Drawable
+namespace SFUI {
+
+class Scrollbar : public Object
 {
 public:
 	Scrollbar();
@@ -43,5 +47,7 @@ private:
 
 	void updateLimits();
 };
+
+}
 
 #endif

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+namespace SFUI {
+
 Scrollbar::Scrollbar()
 {
 	// do stuff
@@ -149,4 +151,6 @@ void Scrollbar::updateLimits()
 	scrollThumbBottomPosition = scrollThumb.getPosition().y + scrollThumb.getLocalBounds().height;
 	scrollbarTopPosition = scrollbar.getPosition().y;
 	scrollbarBottomPosition = scrollbar.getPosition().y + scrollbar.getLocalBounds().height;
+}
+
 }
