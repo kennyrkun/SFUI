@@ -11,8 +11,8 @@ Object::~Object()
 {
 }
 
-void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-}
+//void Object::draw(sf::RenderTarget& target, sf::RenderStates states) const
+//{
+//}
 
 }
