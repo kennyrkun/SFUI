@@ -7,9 +7,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Button.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\Scrollbar.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -19,14 +16,14 @@
     <ClCompile Include="src\Object.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="IconButton.cpp">
+    <ClCompile Include="src\TextButton.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IconButton.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Button.hpp">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="src\Object.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
@@ -36,8 +33,9 @@
     <ClInclude Include="src\SFUI.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="IconButton.hpp">
+    <ClInclude Include="src\TextButton.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="src\IconButton.hpp" />
   </ItemGroup>
 </Project>

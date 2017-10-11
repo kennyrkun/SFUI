@@ -8,12 +8,12 @@
 namespace SFUI 
 {
 	
-class Button : public Object
+class TextButton : public Object
 {
 public:
-	Button(const std::string string);
-	Button();
-	~Button();
+	TextButton(const std::string string);
+	TextButton();
+	~TextButton();
 
 	sf::RectangleShape m_shape;
 	sf::Text m_string;
@@ -34,7 +34,7 @@ public:
 	void enable();
 	bool enabled;
 
-	bool depressed = fals;
+	bool depressed = false;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

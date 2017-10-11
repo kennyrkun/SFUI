@@ -19,16 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IconButton.cpp" />
+    <ClCompile Include="src\IconButton.cpp" />
     <ClCompile Include="src\Object.cpp" />
-    <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\TextButton.cpp" />
     <ClCompile Include="src\Scrollbar.cpp" />
     <ClCompile Include="src\SFUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IconButton.hpp" />
+    <ClInclude Include="src\IconButton.hpp" />
     <ClInclude Include="src\Object.hpp" />
-    <ClInclude Include="src\Button.hpp" />
+    <ClInclude Include="src\TextButton.hpp" />
     <ClInclude Include="src\Scrollbar.hpp" />
     <ClInclude Include="src\SFUI.hpp" />
   </ItemGroup>

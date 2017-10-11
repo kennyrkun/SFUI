@@ -1,8 +1,8 @@
-#include "Button.hpp"
+#include "TextButton.hpp"
 
 namespace SFUI {
 
-Button::Button(const std::string string)
+TextButton::TextButton(const std::string string)
 {
 	if (m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
 		m_string.setFont(m_font);
@@ -18,7 +18,7 @@ Button::Button(const std::string string)
 	this->enabled = true;
 }
 
-Button::Button()
+TextButton::TextButton()
 {
 	if (m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf"))
 		m_string.setFont(m_font);
@@ -33,12 +33,12 @@ Button::Button()
 	this->enabled = true;
 }
 
-Button::~Button()
+TextButton::~TextButton()
 {
 	//	logger::SILENT("Deconstructing button class");
 }
 
-void Button::setPosition(const sf::Vector2f& newpos)
+void TextButton::setPosition(const sf::Vector2f& newpos)
 {
 	m_shape.setPosition(newpos);
 	m_string.setPosition(static_cast<int>(m_shape.getPosition().x - (m_string.getLocalBounds().width / 2) - 2), static_cast<int>(m_shape.getPosition().y - (m_shape.getLocalBounds().height / 2)) + 1);
@@ -46,7 +46,7 @@ void Button::setPosition(const sf::Vector2f& newpos)
 
 // sf::Vector2f Button::getPosition()
 
-void Button::setString(const std::string string)
+void TextButton::setString(const std::string string)
 {
 	m_string.setString(string);
 
@@ -59,22 +59,22 @@ void Button::setString(const std::string string)
 	setPosition(m_shape.getPosition());
 }
 
-void Button::setButtonColor(const sf::Color& color)
+void TextButton::setButtonColor(const sf::Color& color)
 {
 	m_shape.setFillColor(color);
 }
 
-void Button::setStringColor(const sf::Color& color)
+void TextButton::setStringColor(const sf::Color& color)
 {
 	m_string.setFillColor(color);
 }
 
-void Button::setStringStyle(const sf::Text::Style& style)
+void TextButton::setStringStyle(const sf::Text::Style& style)
 {
 	m_string.setStyle(style);
 }
 
-void Button::setSizeMultiplier(const float multiplier_)
+void TextButton::setSizeMultiplier(const float multiplier_)
 {
 	multiplier = multiplier_;
 
@@ -83,7 +83,7 @@ void Button::setSizeMultiplier(const float multiplier_)
 
 // float Button::getSizeMultiplier()
 
-void Button::disable()
+void TextButton::disable()
 {
 	disabled = true;
 	enabled = false;
@@ -92,7 +92,7 @@ void Button::disable()
 	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 80));
 }
 
-void Button::enable()
+void TextButton::enable()
 {
 	enabled = true;
 	disabled = false;
@@ -101,7 +101,7 @@ void Button::enable()
 	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 255));
 }
 
-void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void TextButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(m_shape);
 	target.draw(m_string);
