@@ -7,7 +7,7 @@
 namespace SFUI
 {
 
-class SFUI
+class SFUI final
 {
 public:
 	SFUI(sf::RenderWindow* boundWindow_);

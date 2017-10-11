@@ -10,21 +10,33 @@
     <ClCompile Include="src\Button.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scrollbar.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="src\SFUI.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scrollbar.cpp">
+    <ClCompile Include="src\Object.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="IconButton.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\SFUI.hpp">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="src\Button.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="src\Object.hpp">
+      <Filter>Sources</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scrollbar.hpp">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SFUI.hpp">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="IconButton.hpp">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
