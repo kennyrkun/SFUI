@@ -15,12 +15,15 @@ public:
 	~IconButton();
 
 	sf::RectangleShape shape;
+	sf::RectangleShape icon;
 
 	void setPosition(const sf::Vector2f& pos);
 	sf::Vector2f getPosition() { return shape.getPosition(); };
 
 	void setIconTexture(const sf::Texture& texture);
 	void setIconTexture(const sf::Texture& texture, const bool resetRect);
+	void setIconTexture(const std::string filePath);
+	void setIconTexture(const std::string filePath, const bool resetRect);
 	void setButtonSize(const int newSize);
 	void setButtonColor(const sf::Color& color);
 
@@ -36,7 +39,7 @@ public:
 private:
 	float multiplier = 1;
 	sf::Font font;
-	sf::Texture icon;
+	sf::Texture iconTexture;
 };
 
 }

@@ -4,8 +4,9 @@ namespace SFUI {
 
 IconButton::IconButton()
 {
-	shape.setFillColor(sf::Color(240, 240, 240));
-	shape.setOutlineThickness(1);
+//	shape.setFillColor(sf::Color(240, 240, 240));
+	shape.setFillColor(sf::Color::Black);
+	shape.setOutlineThickness(3);
 	shape.setOutlineColor(sf::Color(158, 158, 158));
 
 	this->enabled = true;
@@ -17,6 +18,7 @@ IconButton::~IconButton()
 
 void IconButton::setPosition(const sf::Vector2f& newpos)
 {
+	icon.setPosition(newpos);
 	shape.setPosition(newpos);
 }
 
@@ -24,19 +26,34 @@ void IconButton::setPosition(const sf::Vector2f& newpos)
 
 void IconButton::setIconTexture(const sf::Texture& texture)
 {
-	icon = texture;
-	shape.setTexture(&icon);
+	iconTexture = texture;
+	icon.setTexture(&iconTexture, false);
 }
 
 void IconButton::setIconTexture(const sf::Texture& texture, const bool resetRect)
 {
-	icon = texture;
-	shape.setTexture(&icon, resetRect);
+	iconTexture = texture;
+	icon.setTexture(&iconTexture, resetRect);
+	shape.setSize(icon.getSize());
+}
+
+void IconButton::setIconTexture(const std::string filePath)
+{
+	iconTexture.loadFromFile(filePath);
+	icon.setTexture(&iconTexture, false);
+}
+
+void IconButton::setIconTexture(const std::string filePath, const bool resetRect)
+{
+	iconTexture.loadFromFile(filePath);
+	icon.setTexture(&iconTexture, resetRect);
+	shape.setSize(icon.getSize());
 }
 
 void IconButton::setButtonSize(const int newSize)
 {
 	shape.setSize(sf::Vector2f(newSize, newSize));
+	icon.setSize(sf::Vector2f(newSize, newSize));
 }
 
 void IconButton::setButtonColor(const sf::Color& color)
@@ -63,6 +80,7 @@ void IconButton::enable()
 void IconButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(shape);
+	target.draw(icon);
 }
 
 } // SFUI
