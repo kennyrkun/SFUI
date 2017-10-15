@@ -50,10 +50,10 @@ void IconButton::setIconTexture(const std::string filePath, const bool resetRect
 	shape.setSize(icon.getSize());
 }
 
-void IconButton::setButtonSize(const int newSize)
+void IconButton::setButtonSize(const sf::Vector2f& newSize)
 {
-	shape.setSize(sf::Vector2f(newSize, newSize));
-	icon.setSize(sf::Vector2f(newSize, newSize));
+	shape.setSize(newSize);
+	icon.setSize(newSize);
 }
 
 void IconButton::setButtonColor(const sf::Color& color)

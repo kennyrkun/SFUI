@@ -24,7 +24,7 @@ public:
 	void setIconTexture(const sf::Texture& texture, const bool resetRect);
 	void setIconTexture(const std::string filePath);
 	void setIconTexture(const std::string filePath, const bool resetRect);
-	void setButtonSize(const int newSize);
+	void setButtonSize(const sf::Vector2f& newSize);
 	void setButtonColor(const sf::Color& color);
 
 	void disable();

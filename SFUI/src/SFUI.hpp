@@ -14,6 +14,8 @@ public:
 	SFUI(sf::RenderWindow* boundWindow_);
 	~SFUI();
 
+	void bindWindow(sf::RenderWindow* window);
+
 private:
 	sf::RenderWindow* boundWindow;
 };
