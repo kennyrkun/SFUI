@@ -5,7 +5,8 @@
 
 #include <SFML\Graphics.hpp>
 
-namespace SFUI {
+namespace SFUI
+{
 
 class Scrollbar : public Object
 {
@@ -15,6 +16,9 @@ public:
 
 	void create(sf::RenderWindow* target_window);
 	void update(float contentHeight_, float viewportHeight);
+
+	void setColor(const sf::Color& scrollThumb, const sf::Color& scrollbar);
+	void setFullColor(const sf::Color& scrollThumb, const sf::Color& scrollThumbHover, const sf::Color& scrollThumbDrag, const sf::Color& scrollbar);
 
 	bool isEnabled;
 

@@ -2,7 +2,8 @@
 
 #include <iostream>
 
-namespace SFUI {
+namespace SFUI
+{
 
 Scrollbar::Scrollbar()
 {
@@ -75,6 +76,20 @@ void Scrollbar::update(float contentHeight_, float viewportHeight)
 		isEnabled = true;
 		std::cout << "scrollbar enabled" << "\n";
 	}
+}
+
+void Scrollbar::setColor(const sf::Color& scrollThumb, const sf::Color& scrollbar)
+{
+	this->scrollThumb.setFillColor(scrollThumb);
+	this->scrollbar.setFillColor(scrollbar);
+}
+
+void Scrollbar::setFullColor(const sf::Color& scrollThumb, const sf::Color& scrollThumbHover, const sf::Color& scrollThumbDrag, const sf::Color& scrollbar)
+{
+	this->scrollThumb.setFillColor(scrollThumb);
+	this->scrollbar.setFillColor(scrollbar);
+
+	// TODO: hover and drag colours
 }
 
 bool Scrollbar::canScrollDown()

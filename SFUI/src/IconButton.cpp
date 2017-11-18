@@ -24,30 +24,30 @@ void IconButton::setPosition(const sf::Vector2f& newpos)
 
 // sf::Vector2f Button::getPosition()
 
-void IconButton::setIconTexture(const sf::Texture& texture)
-{
-	iconTexture = texture;
-	icon.setTexture(&iconTexture, false);
-}
-
-void IconButton::setIconTexture(const sf::Texture& texture, const bool resetRect)
+void IconButton::setIconTexture(const sf::Texture& texture, const bool resetRect = false)
 {
 	iconTexture = texture;
 	icon.setTexture(&iconTexture, resetRect);
-	shape.setSize(icon.getSize());
+
+	if (resetRect)
+	{
+		icon.setSize(sf::Vector2f(iconTexture.getSize().x, iconTexture.getSize().y));
+		shape.setSize(icon.getSize());
+	}
 }
 
-void IconButton::setIconTexture(const std::string filePath)
+int IconButton::setIconTexture(const std::string filePath, const bool resetRect = false)
 {
-	iconTexture.loadFromFile(filePath);
-	icon.setTexture(&iconTexture, false);
-}
-
-void IconButton::setIconTexture(const std::string filePath, const bool resetRect)
-{
-	iconTexture.loadFromFile(filePath);
+	int rc = iconTexture.loadFromFile(filePath);
 	icon.setTexture(&iconTexture, resetRect);
-	shape.setSize(icon.getSize());
+	
+	if (resetRect)
+	{
+		icon.setSize(sf::Vector2f(iconTexture.getSize().x, iconTexture.getSize().y));
+		shape.setSize(icon.getSize());
+	}
+
+	return rc;
 }
 
 void IconButton::setButtonSize(const sf::Vector2f& newSize)
@@ -67,6 +67,7 @@ void IconButton::disable()
 	enabled = false;
 
 	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 80));
+	icon.setFillColor(sf::Color(icon.getFillColor().r, icon.getFillColor().g, icon.getFillColor().b, 80));
 }
 
 void IconButton::enable()
@@ -75,6 +76,7 @@ void IconButton::enable()
 	disabled = false;
 
 	shape.setFillColor(sf::Color(shape.getFillColor().r, shape.getFillColor().g, shape.getFillColor().b, 255));
+	icon.setFillColor(sf::Color(icon.getFillColor().r, icon.getFillColor().g, icon.getFillColor().b, 255));
 }
 
 void IconButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
