@@ -1,14 +1,15 @@
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
+#ifndef ICON_BUTTON_HPP
+#define ICON_BUTTON_HPP
 
 #include "Object.hpp"
+#include "BaseButton.hpp"
 
 #include <SFML\Graphics.hpp>
 
 namespace SFUI
 {
 
-class IconButton : public Object
+class IconButton : public BaseButton
 {
 public:
 	IconButton();
@@ -39,6 +40,6 @@ private:
 	sf::Texture iconTexture;
 };
 
-}
+} // SFUI namespace
 
-#endif /* BUTTON_HPP */
+#endif // !ICON_BUTTON_HPP
