@@ -30,7 +30,7 @@ TextButton::TextButton()
 
 	m_string.setCharacterSize(14);
 
-	this->enabled = true;
+	enabled = true;
 }
 
 TextButton::~TextButton()
@@ -38,10 +38,10 @@ TextButton::~TextButton()
 	//	logger::SILENT("Deconstructing button class");
 }
 
-void TextButton::setPosition(const sf::Vector2f& newpos)
+void TextButton::setPosition(const sf::Vector2f& position)
 {
-	m_shape.setPosition(newpos);
-	m_string.setPosition(static_cast<int>(m_shape.getPosition().x - (m_string.getLocalBounds().width / 2) - 2), static_cast<int>(m_shape.getPosition().y - (m_shape.getLocalBounds().height / 2)) + 1);
+	m_shape.setPosition(position);
+	m_string.setPosition(static_cast<int>(m_shape.getPosition().x - (m_string.getLocalBounds().width / 2.0f) - 2.0f), static_cast<int>(m_shape.getPosition().y - (m_shape.getLocalBounds().height / 2.0f)) + 1.0f);
 }
 
 // sf::Vector2f Button::getPosition()
@@ -64,9 +64,11 @@ void TextButton::setButtonColor(const sf::Color& color)
 	m_shape.setFillColor(color);
 }
 
-void TextButton::setStringColor(const sf::Color& color)
+void TextButton::setColor(const sf::Color& buttonColor, const sf::Color& buttonOutlineColor, const sf::Color& textColor)
 {
-	m_string.setFillColor(color);
+	m_string.setFillColor(textColor);
+	m_shape.setOutlineColor(buttonOutlineColor);
+	m_shape.setFillColor(buttonColor);
 }
 
 void TextButton::setStringStyle(const sf::Text::Style& style)
@@ -79,6 +81,19 @@ void TextButton::setSizeMultiplier(const float multiplier_)
 	multiplier = multiplier_;
 
 	setString(m_string.getString());
+}
+
+void TextButton::setScale(sf::Vector2f scale_)
+{
+	scale = scale_;
+
+	m_shape.setScale(scale_);
+	m_string.setScale(scale_);
+}
+
+sf::Vector2f TextButton::getScale()
+{
+	return scale;
 }
 
 // float Button::getSizeMultiplier()
@@ -99,6 +114,20 @@ void TextButton::enable()
 
 	m_shape.setFillColor(sf::Color(m_shape.getFillColor().r, m_shape.getFillColor().g, m_shape.getFillColor().b, 255));
 	m_string.setFillColor(sf::Color(m_string.getFillColor().r, m_string.getFillColor().g, m_string.getFillColor().b, 255));
+}
+
+void TextButton::select()
+{
+	m_shape.setOutlineColor(sf::Color(0, 170, 232));
+	m_shape.setOutlineThickness(2);
+	selected = true;
+}
+
+void TextButton::deselect()
+{
+	m_shape.setOutlineColor(sf::Color(158, 158, 158));
+	m_shape.setOutlineThickness(1);
+	selected = false;
 }
 
 void TextButton::draw(sf::RenderTarget& target, sf::RenderStates states) const

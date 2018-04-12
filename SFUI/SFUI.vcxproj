@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BaseButton.cpp" />
     <ClCompile Include="src\IconButton.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\TextButton.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="src\SFUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BaseButton.hpp" />
     <ClInclude Include="src\IconButton.hpp" />
     <ClInclude Include="src\Object.hpp" />
     <ClInclude Include="src\TextButton.hpp" />

@@ -14,6 +14,10 @@ class Object : public sf::Drawable
 public:
 	Object();
 	~Object();
+
+//	virtual void handleEvents(sf::Event &event) = 0;
+//	virtual void update() = 0;
+//	virtual void draw() = 0;
 };
 
 }

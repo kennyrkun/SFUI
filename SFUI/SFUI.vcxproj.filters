@@ -5,39 +5,52 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Sources\Objects">
+      <UniqueIdentifier>{de9770c4-3967-4163-aad0-53d883b403db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\SFUI">
+      <UniqueIdentifier>{470c8656-04a8-42bc-9fcf-67e0c711999e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Objects\Button">
+      <UniqueIdentifier>{cce6a281-3afa-4fa9-b68c-4467f5efab91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Object.cpp">
+      <Filter>Sources\Objects</Filter>
+    </ClCompile>
     <ClCompile Include="src\Scrollbar.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\SFUI.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Object.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TextButton.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\SFUI</Filter>
     </ClCompile>
     <ClCompile Include="src\IconButton.cpp">
+      <Filter>Sources\Objects\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextButton.cpp">
+      <Filter>Sources\Objects\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseButton.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Object.hpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\Scrollbar.hpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\SFUI.hpp">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TextButton.hpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\SFUI</Filter>
     </ClInclude>
     <ClInclude Include="src\IconButton.hpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Objects\Button</Filter>
     </ClInclude>
+    <ClInclude Include="src\TextButton.hpp">
+      <Filter>Sources\Objects\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BaseButton.hpp" />
   </ItemGroup>
 </Project>
