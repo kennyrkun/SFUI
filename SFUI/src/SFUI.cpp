@@ -1,22 +1,43 @@
 #include "SFUI.hpp"
 
+#include "Object.hpp"
+
 namespace SFUI
 {
 
-SFUI::SFUI(sf::RenderWindow* boundWindow_)
+SFUI::SFUI(sf::RenderWindow* boundWindow_) : renderWindow(boundWindow_)
 {
-	boundWindow = boundWindow_;
 }
 
 SFUI::~SFUI()
 {
-	delete boundWindow;
+	delete renderWindow;
 }
 
-void SFUI::bindWindow(sf::RenderWindow * window)
+void SFUI::HandleEvents()
 {
-	delete boundWindow;
-	boundWindow = window;
+	sf::Event event;
+
+//	for (size_t i = 0; i < objects.size(); i++)
+//		objects[i].handleEvents(event);
 }
 
+void SFUI::HandleEvents(sf::Event &event)
+{
+	//	for (size_t i = 0; i < objects.size(); i++)
+	//		objects[i].handleEvents(event);
 }
+
+void SFUI::Update()
+{
+//	for (size_t i = 0; i < objects.size(); i++)
+//		objects[i].update();
+}
+
+void SFUI::Draw()
+{
+//	for (size_t i = 0; i < objects.size(); i++)
+//		objects[i].update();
+}
+
+} // SFUI namespace
