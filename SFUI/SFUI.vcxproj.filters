@@ -32,7 +32,7 @@
       <Filter>Sources\Objects\Button</Filter>
     </ClCompile>
     <ClCompile Include="src\BaseButton.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Objects\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,8 @@
     <ClInclude Include="src\TextButton.hpp">
       <Filter>Sources\Objects\Button</Filter>
     </ClInclude>
-    <ClInclude Include="src\BaseButton.hpp" />
+    <ClInclude Include="src\BaseButton.hpp">
+      <Filter>Sources\Objects\Button</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
