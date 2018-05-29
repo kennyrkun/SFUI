@@ -72,6 +72,7 @@ int Slider::getValue() const
 
 void Slider::setValue(int value)
 {
+	// TODO: std::clamp ?
 	// Ensure value is in bounds
 	if (value < 0)
 		value = 0;

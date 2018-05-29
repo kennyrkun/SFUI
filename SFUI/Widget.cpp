@@ -120,7 +120,7 @@ void Widget::centerText(sf::Text& text)
 	text.setPosition(int(m_size.x - r.width) / 2, int(m_size.y - r.height) / 2);
 }
 
-// callbacks -------------------------------------------------------------------
+// callbacks
 
 void Widget::onStateChanged(State) {}
 void Widget::onMouseMoved(float, float) {}

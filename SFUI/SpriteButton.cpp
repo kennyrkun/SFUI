@@ -9,7 +9,7 @@ namespace SFUI
 SpriteButton::SpriteButton(const sf::Texture& texture, const sf::String& string) : Widget(), m_pressed(false)
 {
 	size_t width = texture.getSize().x;
-	size_t height = texture.getSize().y / 3; // default, hover, focus
+	size_t height = texture.getSize().y / 4; // default, hover, pressed, focus
 
 	m_background.setTexture(texture);
 	m_background.setTextureRect(sf::IntRect(0, 0, width, height));
@@ -48,6 +48,17 @@ void SpriteButton::setTextSize(size_t size)
 {
 	m_text.setCharacterSize(size);
 	centerText(m_text);
+}
+
+void SpriteButton::setTexture(const sf::Texture & texture)
+{
+	size_t width = texture.getSize().x;
+	size_t height = texture.getSize().y / 4; // default, hover, pressed, focus
+
+	m_background.setTexture(texture);
+	m_background.setTextureRect(sf::IntRect(0, 0, width, height));
+
+	setSize(sf::Vector2f(width, height));
 }
 
 void SpriteButton::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -95,8 +106,8 @@ void SpriteButton::onMousePressed(float, float)
 
 void SpriteButton::onMouseReleased(float x, float y)
 {
-
 	release();
+
 	if (containsPoint({x, y}))
 	{
 		triggerCallback();

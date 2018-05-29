@@ -6,6 +6,8 @@
 namespace SFUI
 {
 
+// TODO: why is this different than the other things?
+
 // Push button linked to a sprite sheet
 class SpriteButton : public Widget
 {
