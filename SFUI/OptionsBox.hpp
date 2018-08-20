@@ -17,16 +17,16 @@ public:
 	OptionsBox();
 
 	// Append a new item in the list
-	// @param label: displayed label when selected
-	// @param value: value associated
+	// label: displayed label when selected
+	// value: value associated
+	// select: change the selected value to this when added
 	void addItem(const sf::String& label, const T& value, bool select = false);
 
 	// Make an item the current one
-	// @param item_index: position of the item in the list
+	// item_index: position of the item in the list
 	void selectItem(size_t item_index);
 
 	// Get the value of the selected item
-	// @return associated value
 	const T& getSelectedValue() const;
 
 	// Get the index of the selected item
@@ -38,8 +38,7 @@ public:
 	// Select previous item in the list
 	void selectPrevious();
 
-	// callbacks ---------------------------------------------------------------
-
+	// callbacks
 	void onStateChanged(State state);
 	void onMouseMoved(float x, float y);
 	void onMousePressed(float x, float y);

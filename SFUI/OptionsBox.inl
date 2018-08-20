@@ -5,11 +5,12 @@ namespace SFUI
 
 template <class T>
 OptionsBox<T>::OptionsBox() :
+																	// HACK: how do these live?
 	m_current_index(-1), m_box(Box::Type::Input), m_arrow_left(Arrow(Arrow::Direction::Left)), m_arrow_right(Arrow(Arrow::Direction::Right))
 {
 	// Build visual components
 	m_box.item().setFont(Theme::getFont());
-	m_box.item().setCharacterSize(Theme::fontSize);
+	m_box.item().setCharacterSize(Theme::textCharacterSize);
 	m_box.setSize(Theme::minWidgetWidth, Theme::getBoxHeight());
 
 	// Pack left arrow
@@ -31,7 +32,8 @@ void OptionsBox<T>::addItem(const sf::String& label, const T& value, bool select
 	m_items.push_back(Item(label, value));
 
 	m_box.item().setString(label);
-	int width = m_box.item().getLocalBounds().width + Theme::getBoxHeight() * 2 + Theme::PADDING * 2;
+	int width = m_box.item().getLocalBounds().width + (Theme::getBoxHeight() * 2) + (Theme::PADDING * 2);
+
 	// Check if box needs to be resized
 	if (width > getSize().x)
 	{
@@ -120,6 +122,9 @@ template <class T>
 void OptionsBox<T>::onStateChanged(State state)
 {
 	// Hovered state is handled in the onMouseMoved callback
+	if (state == State::Pressed)
+		state = State::Focused;
+
 	if (state == State::Default || state == State::Focused)
 	{
 		m_arrow_left.applyState(state);
@@ -131,6 +136,9 @@ void OptionsBox<T>::onStateChanged(State state)
 template <class T>
 void OptionsBox<T>::onMouseMoved(float x, float y)
 {
+	// FIXME: everytime mouseMoved is called 
+	// a new Arrow is created and destroyed
+
 	updateArrow(m_arrow_left, x, y);
 	updateArrow(m_arrow_right, x, y);
 }
@@ -189,7 +197,7 @@ void OptionsBox<T>::onKeyReleased(sf::Keyboard::Key key)
 }
 
 template <class T>
-OptionsBox<T>::Item::Item(const sf::String& string, const T& val):
+OptionsBox<T>::Item::Item(const sf::String& string, const T& val) :
 	label(string),
 	value(val)
 {
