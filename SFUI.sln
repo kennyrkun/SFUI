@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SFUI", "SFUI\SFUI.vcxproj", "{D37A6E36-78C5-4D81-964B-34B7D056FED1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SFUI-Testing", "SFUI-Testing\SFUI-Testing.vcxproj", "{B930BDDF-CA08-4C7A-AB81-B91AC81E04CC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D37A6E36-78C5-4D81-964B-34B7D056FED1} = {D37A6E36-78C5-4D81-964B-34B7D056FED1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
