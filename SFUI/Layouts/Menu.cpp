@@ -17,9 +17,11 @@ int Menu::onEvent(const sf::Event& event)
 	switch (event.type)
 	{
 	case sf::Event::MouseMoved:
+	{
 		sf::Vector2f mouse = convertMousePosition(event.mouseMove.x, event.mouseMove.y);
 		onMouseMoved(mouse.x, mouse.y);
 		break;
+	}
 
 	case sf::Event::MouseButtonPressed:
 	{
