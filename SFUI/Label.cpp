@@ -9,9 +9,10 @@ Label::Label(const sf::String& string)
 	m_text.setFont(Theme::getFont());
 	m_text.setPosition(Theme::PADDING, Theme::PADDING);
 	m_text.setFillColor(Theme::click.textColor);
-	m_text.setCharacterSize(Theme::fontSize);
-	setSelectable(false);
+	m_text.setCharacterSize(Theme::textCharacterSize);
 	setText(string);
+
+	setSelectable(false);
 }
 
 void Label::setText(const sf::String& string)
