@@ -3,14 +3,12 @@
 namespace SFUI
 {
 
-Image::Image():
-	m_texture(NULL)
+Image::Image() : m_texture(NULL)
 {
 	setSelectable(false);
 }
 
-Image::Image(const sf::Texture& texture):
-	m_texture(NULL)
+Image::Image(const sf::Texture& texture) : m_texture(NULL)
 {
 	setSelectable(false);
 	setTexture(texture);

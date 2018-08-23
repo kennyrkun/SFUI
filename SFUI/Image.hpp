@@ -6,9 +6,9 @@
 namespace SFUI
 {
 
-// Widget for displaying a picture
-// Passive widget: cannot be focused or trigger event
-class Image: public Widget
+// Widget for displaying a picture.
+// Passive: Cannot be focused or trigger event.
+class Image : public Widget
 {
 public:
 	Image();
@@ -16,6 +16,7 @@ public:
 
 	void setTexture(const sf::Texture& texture);
 
+	// Sets a tint on the texture of the image.
 	void setColor(const sf::Color& color);
 
 private:
@@ -27,4 +28,4 @@ private:
 
 }
 
-#endif // SFUI_IMAGE_HPP
+#endif // !SFUI_IMAGE_HPP
