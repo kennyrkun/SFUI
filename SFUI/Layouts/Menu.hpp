@@ -5,11 +5,14 @@
 
 #include <SFML/Graphics.hpp>
 
+// FIXME: adding a widget to a menu more than once causes an infinite loop
+// look into this and determine the cause and if it's a problem, or just misuse.
+// it's probably due to the autistic way we handle containers
+
 namespace SFUI
 {
 
-// Vertical Stacked Layout
-// basically a container for widgets?
+// This object is required to use SFUI layouts.
 class Menu : public SFUI::VerticalBoxLayout
 {
 public:
@@ -34,4 +37,4 @@ private:
 
 }
 
-#endif // SFUI_MENU_HPP
+#endif // !SFUI_MENU_HPP

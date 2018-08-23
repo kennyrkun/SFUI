@@ -108,7 +108,7 @@ void Layout::onMouseMoved(float x, float y)
 	}
 	else
 	{
-		// Loop over widgets via magic
+		// Loop over widgets via autism
 		for (Widget* widget = m_first; widget != NULL; widget = widget->m_next)
 		{
 			// Convert mouse position to widget coordinates system
@@ -191,10 +191,12 @@ void Layout::onMouseWheelMoved(int delta)
 
 void Layout::onKeyPressed(sf::Keyboard::Key key)
 {
+	// TODO: if in a text box, focus next widget on return
+	// TODO: make this more versatile
+
 	if (key == Theme::nextWidgetKey || (key == sf::Keyboard::Key::Tab && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)))
 	{
 		if (!focusNextWidget())
-			// Try to focus first widget if possible
 			focusNextWidget();
 	}
 	else if (key == Theme::previousWidgetKey || key == sf::Keyboard::Key::Tab)
@@ -238,11 +240,13 @@ bool Layout::focusWidget(Widget* widget, State state)
 	if (widget != NULL)
 	{
 		// If another widget was already focused, remove focus
-		if (m_focus != NULL && m_focus != widget)
+		if (m_focus != NULL &&
+			m_focus != widget) // widget already focused
 		{
 			m_focus->setState(State::Default);
 			m_focus = NULL;
 		}
+
 		// Apply focus to widget
 		if (widget->isSelectable())
 		{
@@ -251,6 +255,7 @@ bool Layout::focusWidget(Widget* widget, State state)
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -268,6 +273,11 @@ bool Layout::focusPreviousWidget()
 	{
 		if (widget != NULL)
 		{
+			// I think this converts the widget to a layout
+			// then, if it was successfully converted,
+			// sets the focus to the next layout?
+			// otherwise, focuses an actual widget
+
 			Layout* container = widget->toLayout();
 			if (container != NULL)
 			{
@@ -304,6 +314,11 @@ bool Layout::focusNextWidget()
 	{
 		if (widget != NULL)
 		{
+			// I think this converts the widget to a layout
+			// then, if it was successfully converted,
+			// sets the focus to the next layout?
+			// otherwise, focuses an actual widget
+
 			Layout* container = widget->toLayout();
 			if (container != NULL)
 			{

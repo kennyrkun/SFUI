@@ -3,6 +3,7 @@
 
 #include "../Widget.hpp"
 
+
 namespace SFUI
 {
 
@@ -13,8 +14,11 @@ class FormLayout;
 class HorizontalBoxLayout;
 class VerticalBoxLayout;
 
-// Base class for layouts. Layouts are special widgets which act as containers.
+// Base class for layouts.
+// Layouts are special widgets which act as containers.
 // See FormLayout, HorizontalBoxLayout and VerticalBoxLayout
+// ---- This function is NOT intended to be used outside the API.
+// TODO: add outlines to each layout, so they can visually be debugged
 class Layout : public Widget
 {
 public:
@@ -26,7 +30,6 @@ public:
 	 // returns the added widget
 	virtual Widget* add(Widget* widget, int callbackID = -1) = 0;
 
-	/// Helpers
 	Button*				 addButton(const sf::String& string, int callbackID = -1);
 	Label*				 addLabel(const sf::String& string);
 	FormLayout*			 addFormLayout();
@@ -46,7 +49,8 @@ protected:
 	void onKeyReleased(sf::Keyboard::Key key) override;
 	void onTextEntered(sf::Uint32 unicode) override;
 
-	Layout* toLayout() override { return this; } // hack?
+	Layout* toLayout() override { return this; } // HACK: hack?
+
 	bool focusNextWidget();
 	bool focusPreviousWidget();
 
@@ -69,4 +73,4 @@ private:
 
 }
 
-#endif // SFUI_LAYOUT_HPP
+#endif // !SFUI_LAYOUT_HPP

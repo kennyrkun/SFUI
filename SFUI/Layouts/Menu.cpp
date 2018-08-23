@@ -12,30 +12,35 @@ Menu::Menu(sf::RenderTarget& window):
 
 int Menu::onEvent(const sf::Event& event)
 {
+	// TODO: test events for subwindows
+
 	switch (event.type)
 	{
 	case sf::Event::MouseMoved:
-	{
 		sf::Vector2f mouse = convertMousePosition(event.mouseMove.x, event.mouseMove.y);
 		onMouseMoved(mouse.x, mouse.y);
 		break;
-	}
 
 	case sf::Event::MouseButtonPressed:
+	{
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
 			sf::Vector2f mouse = convertMousePosition(event.mouseButton.x, event.mouseButton.y);
 			onMousePressed(mouse.x, mouse.y);
 		}
 		break;
+	}
 
 	case sf::Event::MouseButtonReleased:
+	{
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
 			sf::Vector2f mouse = convertMousePosition(event.mouseButton.x, event.mouseButton.y);
 			onMouseReleased(mouse.x, mouse.y);
 		}
+
 		break;
+	}
 
 	case sf::Event::MouseWheelMoved:
 		onMouseWheelMoved(event.mouseWheel.delta);
@@ -63,6 +68,7 @@ int Menu::onEvent(const sf::Event& event)
 		m_triggered = NULL;
 		return id;
 	}
+
 	return -1;
 }
 

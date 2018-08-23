@@ -19,6 +19,7 @@ public:
 	Widget* addRow(const sf::String& label, Widget* widget, int id = -1);
 
 private:
+ 	// Update the bounds of this Widget according to the widgets inside of it.
 	void recomputeGeometry() override;
 
 	float m_labelWidth;

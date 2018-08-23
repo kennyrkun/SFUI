@@ -13,10 +13,11 @@ public:
 	Widget* add(Widget* widget, int id = -1) override;
 
 protected:
+	// Update this widget's size according to the widgets inside of it.
 	void recomputeGeometry() override;
 };
 
 }
 
 
-#endif // SFUI_HBOXLAYOUT_HPP
+#endif // !SFUI_HBOXLAYOUT_HPP
