@@ -3,9 +3,10 @@
 namespace SFUI
 {
 
-size_t    Theme::fontSize = 12;
-Theme::Style Theme::click;
-Theme::Style Theme::input;
+size_t    Theme::textCharacterSize = 12;
+Theme::TextStyle Theme::label;
+Theme::TextStyle Theme::click;
+Theme::TextStyle Theme::input;
 sf::Color Theme::windowBgColor;
 int       Theme::borderSize = 1.f;
 int       Theme::minWidgetWidth = 86;
@@ -27,8 +28,16 @@ bool Theme::loadFont(const std::string& filename)
 
 bool Theme::loadTexture(const std::string& filename)
 {
+	// TODO: get color from style sheet
+	// get the color of the last row of pixels in the style sheet
+	// perhaps the last block of 8 x 8 pixels can be retrieved
+	// SFUI::Theme::windowBgColor = SFUI::Theme::getThemeColor(2);
+	// the color of the 2nd pixel from 0
+
 	if (m_texture.loadFromFile(filename))
 	{
+		// TODO: allow library users to customise size of textures
+
 		sf::IntRect subrect;
 //		subrect.width = m_texture.getSize().x;
 //		subrect.height = m_texture.getSize().y / _TEX_COUNT;
@@ -65,7 +74,7 @@ const sf::IntRect& Theme::getTextureRect(Box::Type type, State state)
 
 	if (state == State::Default)
 	{
-		if (type == Box::Type::Click)
+		if (type == Box::Type::PushButton)
 			id = BOX_CLICK_DEFAULT;
 		else if (type == Box::Type::Progress)
 			id = BOX_PROGRESS_DEFAULT;
@@ -80,7 +89,7 @@ const sf::IntRect& Theme::getTextureRect(Box::Type type, State state)
 	}
 	else if (state == State::Hovered)
 	{
-		if (type == Box::Type::Click)
+		if (type == Box::Type::PushButton)
 			id = BOX_CLICK_HOVERED;
 		else if (type == Box::Type::Progress)
 			id = BOX_PROGRESS_HOVERED;
@@ -95,7 +104,7 @@ const sf::IntRect& Theme::getTextureRect(Box::Type type, State state)
 	}
 	else if (state == State::Pressed)
 	{
-		if (type == Box::Type::Click)
+		if (type == Box::Type::PushButton)
 			id = BOX_CLICK_PRESSED;
 		else if (type == Box::Type::Progress)
 			id = BOX_PROGRESS_PRESSED;
@@ -110,7 +119,7 @@ const sf::IntRect& Theme::getTextureRect(Box::Type type, State state)
 	}
 	else if (state == State::Focused)
 	{
-		if (type == Box::Type::Click)
+		if (type == Box::Type::PushButton)
 			id = BOX_CLICK_FOCUSED;
 		else if (type == Box::Type::Progress)
 			id = BOX_PROGRESS_FOCUSED;
@@ -144,24 +153,34 @@ float Theme::getBoxHeight()
 
 float Theme::getLineSpacing()
 {
-	return m_font.getLineSpacing(fontSize);
+	return m_font.getLineSpacing(textCharacterSize);
 }
 
-sf::Color Theme::hexToRgb(const std::string& hexcolor)
+sf::Color Theme::hexToRgb(std::string hexcolor)
 {
-	sf::Color color = sf::Color::Black;
+	// TODO: make this more versatile
+
+//	if (hexcolor.length > 7)
+//		return;
+
+	// TODO: improve this
+	if (hexcolor[0] != '#')
+		hexcolor.insert(0, "#");
+
+	sf::Color color(sf::Color::White);
 	if (hexcolor.size() == 7) // #ffffff
 	{
 		color.r = sf::Uint8( strtoul(hexcolor.substr(1, 2).c_str(), NULL, 16) );
 		color.g = sf::Uint8( strtoul(hexcolor.substr(3, 2).c_str(), NULL, 16) );
 		color.b = sf::Uint8( strtoul(hexcolor.substr(5, 2).c_str(), NULL, 16) );
 	}
-	else if (hexcolor.size() == 4) // #fff
+	else if (hexcolor.size() == 4) // #fff, shorthand
 	{
 		color.r = sf::Uint8( strtoul(hexcolor.substr(1, 1).c_str(), NULL, 16) * 17 );
 		color.g = sf::Uint8( strtoul(hexcolor.substr(2, 1).c_str(), NULL, 16) * 17 );
 		color.b = sf::Uint8( strtoul(hexcolor.substr(3, 1).c_str(), NULL, 16) * 17 );
 	}
+
 	return color;
 }
 
