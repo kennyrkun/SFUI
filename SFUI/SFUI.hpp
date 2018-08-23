@@ -15,6 +15,15 @@
 #include "SpriteButton.hpp"
 #include "InputBox.hpp"
 
+// TODO: look into making Widgets more easily added on to
+// ComboBox
+// OptionsBox
+// InputBox
+
+// TODO: Subwindow
+// a widget that can be used by other widgets.
+// used to create things like dropdowns, tooltips, and popups
+
 // Layouts
 #include "Layouts/FormLayout.hpp"
 #include "Layouts/HorizontalBoxLayout.hpp"
@@ -24,12 +33,6 @@
 namespace SFUI
 {
 	extern const int LIB_VERSION;
-
-	class EXAMPLE
-	{
-	public:
-		void start_blocking();
-	};
 }
 
-#endif // SFUI_HPP
+#endif // !SFUI_HPP
