@@ -7,7 +7,7 @@ namespace SFUI
 Button::Button(const sf::String& string)
 {
 	m_box.item().setFont(Theme::getFont());
-	m_box.item().setCharacterSize(Theme::fontSize);
+	m_box.item().setCharacterSize(Theme::textCharacterSize);
 	m_box.setSize(Theme::minWidgetWidth, Theme::getBoxHeight());
 	setString(string);
 	setSize(m_box.getSize());
@@ -20,8 +20,10 @@ void Button::setString(const sf::String& string)
 	// Recompute widget width
 	int fittingWidth = m_box.item().getLocalBounds().width + Theme::PADDING * 2 + Theme::borderSize * 2;
 	int width = std::max(fittingWidth, Theme::minWidgetWidth);
+
 	m_box.setSize(width, Theme::getBoxHeight());
 	m_box.centerText(m_box.item());
+
 	setSize(m_box.getSize());
 }
 
@@ -56,7 +58,8 @@ void Button::onMouseMoved(float x, float y)
 
 void Button::onMouseReleased(float x, float y)
 {
-	if (containsPoint({x, y}))
+	// TODO: allow changing triggerCallback on mouseRelease or mousePress
+	if (containsPoint(sf::Vector2f(x, y)))
 		triggerCallback();
 }
 

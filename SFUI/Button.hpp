@@ -7,16 +7,19 @@
 namespace SFUI
 {
 
-// The Button widget is a simple press button.
-// The callback is triggered when the button is clicked/activated.
-class Button: public Widget
+// FIXME: if you click a button, then drag and release elsewhere, 
+// and click again without moving the mouse after releasing it will trigger a button press.
+
+// Simple press button.
+// A callback is triggered when the button is activated.
+class Button : public Widget
 {
 public:
 	Button(const sf::String& string);
 
 	// Set the displayed button label
 	void setString(const sf::String& string);
-
+	// Return the displayed button label.
 	const sf::String& getString() const;
 
 	// callbacks 
@@ -34,4 +37,4 @@ private:
 
 }
 
-#endif // SFUI_BUTTON_HPP
+#endif // !SFUI_BUTTON_HPP
