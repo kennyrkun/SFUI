@@ -113,9 +113,6 @@ const sf::Transform& Widget::getTransform() const
 
 void Widget::centerText(sf::Text& text)
 {
-	std::string t = text.getString();
-	std::cout << "centering text (" << t << ")" << "(" << typeid(*this).name() << ")" << std::endl;
-
 	sf::FloatRect r = text.getLocalBounds();
 	text.setPosition(int(m_size.x - r.width) / 2, int(m_size.y - r.height) / 2);
 }

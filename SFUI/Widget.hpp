@@ -20,28 +20,32 @@ enum class State
 class Layout;
 
 // Abstract base class for SFUI widgets
+// ---- This class is NOT meant to be used outside the API.
 class Widget : public sf::Drawable
 {
 public:
 	Widget();
 
-	// Give an ID to the widget
+	// Set Callback ID
 	void setID(int id);
-	// Return ID of widget
+	// Return Callback ID
 	int getID() const;
 
-	// Widget's position
+	// set the Widget's position
+	// this is relative to the origin of the Layout in which the Widget is held.
+	// FIXME: this is overridden when any widget is added to a layout
 	void setPosition(const sf::Vector2f& pos);
 	// Return widget's position
 	const sf::Vector2f& getPosition() const;
 
+	// Returns the widget's Window coordinates.
 	sf::Vector2f getAbsolutePosition() const;
 
-	// Get widget's dimensions
+	// Get widget's dimensions1
 	const sf::Vector2f& getSize() const;
 
 	// Check if a point is inside the widget
-	bool containsPoint(const sf::Vector2f& point) const;
+	virtual bool containsPoint(const sf::Vector2f& point) const;
 
 	// Check if the widget can be selected and trigger events
 	bool isSelectable() const;
@@ -49,7 +53,7 @@ public:
 	// Check if the widget is currently focused
 	bool isFocused() const;
 
-	// Event callbacks
+	// callbacks
 	virtual void onStateChanged(State state);
 	virtual void onMouseMoved(float x, float y);
 	virtual void onMousePressed(float x, float y);
@@ -79,10 +83,12 @@ protected:
 	void setParent(Layout* parent);
 	Layout* getParent() { return m_parent; }
 
-	// HACK: hack?
+	// Returns the layout, if the widget is one.
 	virtual Layout* toLayout() { return NULL; }
 
-	// Centers text in SFUI::SpriteButton objects
+	// Centers text in objects.
+	// TODO: this is only used in SpriteButton.
+	// look into moving this function into that class.
 	void centerText(sf::Text& text);
 
 	virtual void recomputeGeometry() {};
@@ -94,9 +100,9 @@ private:
 	// Protected so that derived classes can access them
 	// Layout this Widget is a part of.
 	Layout*      m_parent;
-	// Widget before this one in layout. (?)
+	// Widget before this one in layout.
 	Widget*      m_previous;
-	// Widget after this one in layout. (?)
+	// Widget after this one in layout.
 	Widget*      m_next;
 
 	State        m_state;
@@ -105,9 +111,10 @@ private:
 	int          m_id;
 	bool         m_selectable;
 
+	// TODO: look into not using transforms for widgets
 	sf::Transform m_transform;
 };
 
 }
 
-#endif // SFUI_WIDGET_HPP
+#endif // !SFUI_WIDGET_HPP
