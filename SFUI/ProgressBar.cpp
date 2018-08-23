@@ -11,32 +11,30 @@ ProgressBar::ProgressBar(float width) : m_box(Box::Type::Progress), m_value(0.f)
 	m_box.setSize(width, Theme::getBoxHeight());
 	m_text.setFont(Theme::getFont());
 	m_text.setFillColor(Theme::input.textColor);
-	m_text.setCharacterSize(Theme::fontSize);
+	m_text.setCharacterSize(Theme::textCharacterSize);
 
 	// Build bar
 	m_bar[0].position = sf::Vector2f(Theme::borderSize, Theme::borderSize);
 	m_bar[1].position = sf::Vector2f(Theme::borderSize, Theme::borderSize);
 	m_bar[2].position = sf::Vector2f(Theme::borderSize, Theme::getBoxHeight() - Theme::borderSize);
 	m_bar[3].position = sf::Vector2f(Theme::borderSize, Theme::getBoxHeight() - Theme::borderSize);
+
 	for (int i = 0; i < 4; ++i)
 		m_bar[i].color = BAR_COLOR;
 
 	setValue(m_value);
-
 	setSelectable(false);
 	setSize(m_box.getSize());
 
 //	m_blink_period = .5f;
-
-	std::cout << "sfdsffdasa" << std::endl;
 }
 
 void ProgressBar::setValue(float value)
 {
-	float x = Theme::borderSize + (getSize().x - Theme::borderSize * 2) * value / 100;
+	float x = Theme::borderSize + (getSize().x - (Theme::borderSize * 2)) * value / 100;
 	m_bar[1].position.x = m_bar[2].position.x = x;
 
-	m_text.setString(std::to_string((int) value) + "%");
+	m_text.setString(std::to_string(static_cast<int>(value)) + "%");
 	m_box.centerText(m_text);
 
 	m_value = value;

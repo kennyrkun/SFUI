@@ -1,8 +1,3 @@
-//-------------------------------------------------
-// Purpse: This widget provides a horizontal progress bar.
-//	* Passive widget : cannot be focused or trigger event
-//-------------------------------------------------
-
 #ifndef PROGRESS_BAR_HPP
 #define PROGRESS_BAR_HPP
 
@@ -12,6 +7,8 @@
 namespace SFUI
 {
 
+// Horizontal progress bar.
+// Passive: Cannot be focused or trigger event.
 class ProgressBar : public Widget
 {
 public:
@@ -19,6 +16,7 @@ public:
 
 	// Value as a percentage of 100
 	void setValue(float value);
+	// Value as a percentage of 100
 	float getValue() const;
 
 private:
