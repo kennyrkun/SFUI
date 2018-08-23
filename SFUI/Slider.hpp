@@ -7,9 +7,10 @@
 namespace SFUI
 {
 
-// This widget provides a vertical or horizontal slider.
-// The slider is the classic widget for controlling a bounded value.
-// The callback is triggered when 'Return' key is pressed.
+// TODO: if Vertical, switch keys to increment
+
+// Vertical or horizontal slider.
+// The callback is triggered when the value is changed.
 class Slider : public Widget
 {
 public:
@@ -17,6 +18,7 @@ public:
 
 	Slider(float length = 200, Type type = Type::Horizontal);
 
+	// Slide step.
 	int getQuantum() const;
 
 	void setQuantum(int slideStep);
@@ -25,8 +27,7 @@ public:
 
 	void setValue(int value);
 
-
-	// callbacks ---------------------------------------------------------------
+	// callbacks
 	void onKeyPressed(sf::Keyboard::Key key);
 	void onMousePressed(float x, float y);
 	void onMouseMoved(float x, float y);
@@ -49,4 +50,4 @@ private:
 
 }
 
-#endif // SFUI_SLIDER_HPP
+#endif // !SFUI_SLIDER_HPP

@@ -155,7 +155,7 @@ void Slider::onKeyPressed(sf::Keyboard::Key key)
 
 void Slider::onMousePressed(float x, float y)
 {
-	std::cout << "teleporting to pos (x: " << x << ", " << "y: " << y << ")(rx: " << sf::Mouse::getPosition().x << ", " << "ry: " << sf::Mouse::getPosition().y << ")" << std::endl;
+//TODO:	std::cout << "teleporting to pos (x: " << x << ", " << "y: " << y << ")(rx: " << sf::Mouse::getPosition().x << ", " << "ry: " << sf::Mouse::getPosition().y << ")" << std::endl;
 
 	if (m_type == Type::Horizontal)
 		setValue(100 * x / getSize().x);
