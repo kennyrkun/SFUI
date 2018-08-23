@@ -8,9 +8,9 @@
 namespace SFUI
 {
 
-// The CheckBox is a widget for enabling/disabling an option.
-// The callback is triggered when the checkbox is checked or unchecked.
-class CheckBox: public Widget
+// Yes/No toggle widget.
+// A callback is triggered when the checkbox is checked or unchecked.
+class CheckBox : public Widget
 {
 public:
 	CheckBox(bool checked = false);
@@ -34,4 +34,4 @@ private:
 
 }
 
-#endif // SFUI_CHECKBOX_HPP
+#endif // !SFUI_CHECKBOX_HPP

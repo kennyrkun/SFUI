@@ -4,13 +4,15 @@
 namespace SFUI
 {
 
-CheckBox::CheckBox(bool checked) : m_box(Box::Type::Tick)
+CheckBox::CheckBox(bool checked) : m_box(Box::Type::Input)
 {
 	int offset = Theme::PADDING + Theme::borderSize;
 	float box_size = m_cross.getSize().x + offset * 2;
+
 	m_box.setSize(box_size, box_size);
 	m_cross.setPosition(offset, offset);
 	m_cross.setColor(Theme::input.textColor);
+
 	check(checked);
 
 	setSize(m_box.getSize());
@@ -23,6 +25,9 @@ bool CheckBox::isChecked() const
 
 void CheckBox::check(bool checked)
 {
+	// TODO: maybe triggerCallback() should be called in here?
+	// it seems to trail every call to check(), except in the constructor.
+
 	m_checked = checked;
 }
 
@@ -30,6 +35,7 @@ void CheckBox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(m_box, states);
+
 	if (m_checked)
 		target.draw(m_cross, states);
 }
