@@ -6,7 +6,7 @@
 namespace SFUI
 {
 
-InputBox::InputBox(float width): m_box(Box::Type::Input), m_cursor_pos(0), m_max_length(-1)
+InputBox::InputBox(float width) : m_box(Box::Type::Input), m_cursor_pos(0), m_max_characters(-1), m_blink_period(1.0f)
 {
 	m_box.setSize(width, Theme::getBoxHeight());
 
@@ -14,30 +14,29 @@ InputBox::InputBox(float width): m_box(Box::Type::Input), m_cursor_pos(0), m_max
 	m_text.setFont(Theme::getFont());
 	m_text.setPosition(offset, offset);
 	m_text.setFillColor(Theme::input.textColor);
-	m_text.setCharacterSize(Theme::fontSize);
+	m_text.setCharacterSize(Theme::textCharacterSize);
 
 	// Build cursor
 	m_cursor.setPosition(offset, offset);
 	m_cursor.setSize(sf::Vector2f(1.f, Theme::getLineSpacing()));
 	m_cursor.setFillColor(Theme::input.textColor);
-	setCursor(0);
+	setCursorPosition(0);
 
-	setDefaultText("");
+	// TODO: is this necessary?
+	setText("");
 
 	setSize(m_box.getSize());
-
-	m_blink_period = 1.0f;
 }
 
-void InputBox::setDefaultText(const sf::String& string)
+void InputBox::setText(const sf::String& string)
 {
 	m_text.setString(string);
-	setCursor(string.getSize());
+	setCursorPosition(string.getSize());
 
 	m_oldText = m_text.getString();
 }
 
-bool InputBox::isEmpty()
+bool InputBox::isEmpty() const
 {
 	return m_text.getString().isEmpty();
 }
@@ -47,7 +46,7 @@ const sf::String& InputBox::getText() const
 	return m_text.getString();
 }
 
-void InputBox::setCursor(size_t index)
+void InputBox::setCursorPosition(size_t index)
 {
 	if (index <= m_text.getString().getSize())
 	{
@@ -73,12 +72,14 @@ void InputBox::setCursor(size_t index)
 		}
 
 		float text_width = m_text.getLocalBounds().width;
+
 		if (m_text.getPosition().x < padding
 			&& m_text.getPosition().x + text_width < getSize().x - padding)
 		{
 			float diff = (getSize().x - padding) - (m_text.getPosition().x + text_width);
 			m_text.move(diff, 0);
 			m_cursor.move(diff, 0);
+
 			// If text is smaller than the textbox, force align on left
 			if (text_width < (getSize().x - padding * 2))
 			{
@@ -90,7 +91,7 @@ void InputBox::setCursor(size_t index)
 	}
 }
 
-size_t InputBox::getCursor() const
+size_t InputBox::getCursorPosition() const
 {
 	return m_cursor_pos;
 }
@@ -100,7 +101,7 @@ void InputBox::setBlinkPeriod(float period)
 	m_blink_period = period;
 }
 
-float InputBox::getBlinkPeriod()
+float InputBox::getBlinkPeriod() const
 {
 	return m_blink_period;
 }
@@ -110,11 +111,11 @@ void InputBox::onKeyPressed(sf::Keyboard::Key key)
 	switch (key)
 	{
 	case sf::Keyboard::Left:
-		setCursor(m_cursor_pos - 1);
+		setCursorPosition(m_cursor_pos - 1);
 		break;
 
 	case sf::Keyboard::Right:
-		setCursor(m_cursor_pos + 1);
+		setCursorPosition(m_cursor_pos + 1);
 		break;
 
 	case sf::Keyboard::BackSpace:
@@ -125,7 +126,7 @@ void InputBox::onKeyPressed(sf::Keyboard::Key key)
 			string.erase(m_cursor_pos - 1);
 			m_text.setString(string);
 
-			setCursor(m_cursor_pos - 1);
+			setCursorPosition(m_cursor_pos - 1);
 		}
 		break;
 
@@ -137,16 +138,16 @@ void InputBox::onKeyPressed(sf::Keyboard::Key key)
 			string.erase(m_cursor_pos);
 			m_text.setString(string);
 
-			setCursor(m_cursor_pos);
+			setCursorPosition(m_cursor_pos);
 		}
 		break;
 
 	case sf::Keyboard::Home:
-		setCursor(0);
+		setCursorPosition(0);
 		break;
 
 	case sf::Keyboard::End:
-		setCursor(m_text.getString().getSize());
+		setCursorPosition(m_text.getString().getSize());
 		break;
 
 	case sf::Keyboard::Return:
@@ -155,7 +156,7 @@ void InputBox::onKeyPressed(sf::Keyboard::Key key)
 
 	case sf::Keyboard::Escape:
 		m_text.setString(m_oldText);
-		setCursor(m_text.getString().getSize());
+		setCursorPosition(m_text.getString().getSize());
 
 	default:
 		break;
@@ -170,7 +171,7 @@ void InputBox::onMousePressed(float x, float y)
 		sf::Vector2f glyph_pos = m_text.findCharacterPos(i);
 		if (glyph_pos.x <= x)
 		{
-			setCursor(i);
+			setCursorPosition(i);
 			break;
 		}
 	}
@@ -181,13 +182,13 @@ void InputBox::onTextEntered(sf::Uint32 unicode)
 	if (unicode > 30 && (unicode < 127 || unicode > 159))
 	{
 		sf::String string = m_text.getString();
-		if (m_max_length == -1 || static_cast<int>(string.getSize() < m_max_length))
+		if (m_max_characters == -1 || static_cast<int>(string.getSize() < m_max_characters))
 		{
 			// Insert character in string at cursor position
 			string.insert(m_cursor_pos, unicode);
 			m_text.setString(string);
 
-			setCursor(m_cursor_pos + 1);
+			setCursorPosition(m_cursor_pos + 1);
 		}
 	}
 }

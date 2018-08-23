@@ -8,30 +8,36 @@
 // TODO: setRows(int rowCount);
 //		 amount of rows in the editor
 
+// TODO: Text cursor
+
+// TODO: support text editing stuff
+// Undo
+// Redo
+// Select
+// Select Word
+// Select All
+// Move selected
+
 namespace SFUI
 {
 
- // The InputBox widget is a one-line text editor.
- // It allows the user to enter and edit a single line of plain text.
+ // Single-line text editor.
 class InputBox : public Widget
 {
 public:
 	InputBox(float width = 200.f);
 
-	void setDefaultText(const sf::String& string);
+	void setText(const sf::String& string);
 
-	// whether or not the InputBox is empty
-	bool isEmpty();
+	bool isEmpty() const;
 
 	const sf::String& getText() const;
 
-	// set curser position
-	void setCursor(size_t index);
-
-	size_t getCursor() const;
+	void setCursorPosition(size_t index);
+	size_t getCursorPosition() const;
 
 	void setBlinkPeriod(float period);
-	float getBlinkPeriod();
+	float getBlinkPeriod() const;
 
 protected:
 	// Callbacks
@@ -43,18 +49,18 @@ protected:
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	// TODO: oldtext
-	// set when deselecting textbox
-	// if user presses escape while in text box reset to this text
-	std::string m_oldText;
-
-	sf::Text    m_text;
 	Box         m_box;
+
+	std::string m_oldText;
+	sf::Text    m_text;
+
 	mutable sf::RectangleShape m_cursor;
 	mutable sf::Clock  m_cursor_timer;
-	size_t             m_cursor_pos;
-	int                m_max_length;
 	float			   m_blink_period;
+	// TODO: add cursor delay (.25s)
+
+	size_t m_max_characters;
+	size_t m_cursor_pos;
 };
 
 }
