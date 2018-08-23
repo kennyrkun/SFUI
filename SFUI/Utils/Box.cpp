@@ -141,8 +141,10 @@ void Box::applyState(State state)
 		return;
 
 	const sf::IntRect& subrect = Theme::getTextureRect(m_type, state);
+
 	float x = subrect.left;
 	float y = subrect.top;
+
 	float width = Theme::borderSize;
 	float height = Theme::borderSize;
 
@@ -170,30 +172,29 @@ void Box::applyState(State state)
 	/*
 	switch (state)
 	{
-		case StateDefault:
-			// Restore default colors
-			//setBodyColor(m_type == Click ? Theme::normal.bgColor : Theme::normal.bgColorInput);
-			//setBorderColor(Theme::BorderColorLight, Theme::BorderColorDark);
+	case StateDefault:
+		// Restore default colors
+		//setBodyColor(m_type == PushButton ? Theme::normal.bgColor : Theme::normal.bgColorInput);
+		//setBorderColor(Theme::BorderColorLight, Theme::BorderColorDark);
+		release();
 
-			release();
-			break;
+		break;
 
-        case StateHovered:
-			//setBodyColor(m_type == Click ? Theme::hover.bgColor : Theme::hover.bgColorInput);
-			//setBorderColor(Theme::BorderColorLight, Theme::BorderColorDark);
-			release();
-			break;
+    case StateHovered:
+		//setBodyColor(m_type == PushButton ? Theme::hover.bgColor : Theme::hover.bgColorInput);
+		//setBorderColor(Theme::BorderColorLight, Theme::BorderColorDark);
+		release();
+		break;
 
-		case StatePressed:
-			press();
-			break;
+	case StatePressed:
+		press();
+		break;
 
-		case StateFocused:
-			//setBodyColor(m_type == Click ? Theme::focus.bgColor : Theme::focus.bgColorInput);
-			//setBorderColor(Theme::BorderColorLight, Theme::BorderColorDark);
-			release();
-			break;
-
+	case StateFocused:
+		//setBodyColor(m_type == PushButton ? Theme::focus.bgColor : Theme::focus.bgColorInput);
+		//setBorderColor(Theme::BorderColorLight, Theme::BorderColorDark);
+		release();
+		break;
 	}
 	*/
 }
@@ -203,6 +204,7 @@ void Box::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.texture = &Theme::getTexture();
 	target.draw(m_vertices, VERTEX_COUNT, sf::Quads, states);
+
 	//target.draw(m_background, 4, sf::Quads, states);
 	//target.draw(m_borders, 16, sf::Quads, states);
 }
@@ -216,8 +218,8 @@ void Box::setBodyColor(const sf::Color& color)
 
 void Box::setBorderColor(const sf::Color& up, const sf::Color& down)
 {
-	sf::Color first = m_type == Click ? up : down;
-	sf::Color second = m_type == Click ? down : up;
+	sf::Color first = m_type == PushButton ? up : down;
+	sf::Color second = m_type == PushButton ? down : up;
 
 	for (size_t i = 0; i < 16; ++i)
 	{
@@ -230,8 +232,9 @@ void Box::centerText(sf::Text& text)
 {
 	sf::Vector2f size = getSize();
 	sf::FloatRect item_size = text.getLocalBounds();
+
 	int x = getPosition().x + (size.x - item_size.width) / 2;
-	text.setPosition(x, Theme::borderSize + Theme::PADDING);
+	text.setPosition(x, Theme::borderSize + Theme::PADDING - 1);
 }
 
 }

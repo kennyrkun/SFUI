@@ -7,6 +7,8 @@
 namespace SFUI
 {
 
+// TODO: finish body/outline system
+
 // Utility class used by widgets for holding visual components
 // NOT meant to be used outside of the API
 class Box : public sf::Drawable
@@ -14,7 +16,7 @@ class Box : public sf::Drawable
 public:
 	enum class Type
 	{
-		Click,
+		PushButton,
 		Progress,
 		Input,
 		Slider,
@@ -22,7 +24,7 @@ public:
 		Tick
 	};
 
-	Box(Type type = Type::Click);
+	Box(Type type = Type::PushButton);
 
 	// Get box position
 	const sf::Vector2f& getPosition() const;
@@ -36,7 +38,6 @@ public:
 	sf::Vector2f getSize() const;
 
 	void press();
-
 	void release();
 
 	// true if point is inside the box limits
@@ -95,4 +96,4 @@ private:
 }
 
 
-#endif // SFUI_BOX_HPP
+#endif // !SFUI_BOX_HPP

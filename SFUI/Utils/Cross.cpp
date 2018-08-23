@@ -31,7 +31,7 @@ void Cross::move(float dx, float dy)
 
 void Cross::setSize(float size)
 {
-
+	// TODO: this
 }
 
 sf::Vector2f Cross::getSize() const

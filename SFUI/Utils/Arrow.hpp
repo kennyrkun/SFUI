@@ -23,6 +23,7 @@ public:
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+	// Updates the size of this object according to size of the Arrow texture.
 	void updateGeometry(float x, float y, Direction direction);
 
 	sf::Vertex m_vertices[4];
@@ -31,4 +32,4 @@ private:
 
 }
 
-#endif // SFUI_ARROW_HPP
+#endif // !SFUI_ARROW_HPP
