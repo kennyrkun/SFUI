@@ -26,7 +26,7 @@ bool Theme::loadFont(const std::string& filename)
 	return m_font.loadFromFile(filename);
 }
 
-bool Theme::loadTexture(const std::string& filename)
+bool Theme::loadTexture(const std::string& filename, bool debug)
 {
 	// TODO: get color from style sheet
 	// get the color of the last row of pixels in the style sheet
@@ -44,6 +44,12 @@ bool Theme::loadTexture(const std::string& filename)
 
 		subrect.width = 6;
 		subrect.height = 6;
+
+		if (debug)
+		{
+			// TODO: completely reload the texture
+			subrect.left = 6;
+		}
 
 		for (int i = 0; i < _TEX_COUNT; ++i)
 		{
@@ -68,6 +74,7 @@ const sf::Texture& Theme::getTexture()
 	return m_texture;
 }
 
+// TODO: improve this
 const sf::IntRect& Theme::getTextureRect(Box::Type type, State state)
 {
 	TextureID id;

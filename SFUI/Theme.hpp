@@ -22,7 +22,8 @@ public:
 	static const sf::Font& getFont();
 
 	// Load the GUI spritesheet
-	static bool loadTexture(const std::string& path);
+	// debug: load the texture's debug strip.
+	static bool loadTexture(const std::string& path, bool debug = false);
 	static const sf::Texture& getTexture();
 
 	// Returns the rect of the Box's corresponding State on the spritesheet
@@ -151,4 +152,4 @@ private:
 
 }
 
-#endif // GUI_THEME_HPP
+#endif // !SFUI_THEME_HPP
