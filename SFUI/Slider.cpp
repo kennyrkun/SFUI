@@ -25,6 +25,7 @@ Slider::Slider(float length, Type type) : m_type(type), m_slideStep(10), m_value
 
 		for (int i = 0; i < 4; ++i)
 		{
+			// TODO: custom color definition for this
 			m_progression[i].color = Theme::windowBgColor;
 			m_progression[i].position.x = m_box.getPosition().x + Theme::borderSize;
 			m_progression[i].position.y = m_box.getPosition().y + Theme::borderSize;
@@ -43,6 +44,7 @@ Slider::Slider(float length, Type type) : m_type(type), m_slideStep(10), m_value
 
 		for (int i = 0; i < 4; ++i)
 		{
+			// TODO: custom color definition for this
 			m_progression[i].color = Theme::windowBgColor;
 			m_progression[i].position.x = m_box.getPosition().x + Theme::borderSize;
 			m_progression[i].position.y = m_box.getSize().y - Theme::borderSize;
@@ -51,6 +53,7 @@ Slider::Slider(float length, Type type) : m_type(type), m_slideStep(10), m_value
 		m_progression[1].position.x += m_box.getSize().x - Theme::borderSize * 2;
 		m_progression[2].position.x += m_box.getSize().x - Theme::borderSize * 2;
 	}
+
 	updateHandlePosition();
 }
 
@@ -170,8 +173,6 @@ void Slider::onMouseMoved(float x, float y)
 	// if the handle is pressed (i.e. is being dragged)
 	if (getState() == State::Pressed)
 	{
-		std::cout << "moving to pos" << std::endl;
-
 		if (m_type == Type::Horizontal)
 			setValue(100 * x / getSize().x);
 		else

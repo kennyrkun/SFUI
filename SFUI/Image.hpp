@@ -7,7 +7,7 @@ namespace SFUI
 {
 
 // Widget for displaying a picture.
-// Passive: Cannot be focused or trigger event.
+// Passive: Cannot be focused or trigger an event.
 class Image : public Widget
 {
 public:

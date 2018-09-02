@@ -44,6 +44,8 @@ protected:
 	void onKeyPressed(sf::Keyboard::Key key);
 	void onMousePressed(float x, float y);
 	void onTextEntered(sf::Uint32 unicode);
+
+	// FIXME: sometimes these keep the hovered state
 	void onStateChanged(State state);
 
 private:
@@ -65,4 +67,4 @@ private:
 
 }
 
-#endif // SFUI_TEXTBOX_HPP
+#endif // !SFUI_TEXTBOX_HPP

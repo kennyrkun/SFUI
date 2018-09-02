@@ -1,5 +1,5 @@
-#ifndef PROGRESS_BAR_HPP
-#define PROGRESS_BAR_HPP
+#ifndef SFUI_PROGRESS_BAR_HPP
+#define SFUI_PROGRESS_BAR_HPP
 
 #include "Widget.hpp"
 #include "Utils/Box.hpp"
@@ -8,7 +8,7 @@ namespace SFUI
 {
 
 // Horizontal progress bar.
-// Passive: Cannot be focused or trigger event.
+// Passive: Cannot be focused or trigger an event.
 class ProgressBar : public Widget
 {
 public:
