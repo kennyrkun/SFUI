@@ -4,7 +4,7 @@
 namespace SFUI
 {
 
-CheckBox::CheckBox(bool checked) : m_box(Box::Type::Input)
+CheckBox::CheckBox(bool checked) : m_box(Box::Type::Tick)
 {
 	int offset = Theme::PADDING + Theme::borderSize;
 	float box_size = m_cross.getSize().x + offset * 2;
