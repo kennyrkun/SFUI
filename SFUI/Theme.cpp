@@ -28,40 +28,27 @@ bool Theme::loadFont(const std::string& filename)
 
 bool Theme::loadTexture(const std::string& filename, bool debug)
 {
-	// TODO: get color from style sheet
-	// get the color of the last row of pixels in the style sheet
-	// perhaps the last block of 8 x 8 pixels can be retrieved
-	// SFUI::Theme::windowBgColor = SFUI::Theme::getThemeColor(2);
-	// the color of the 2nd pixel from 0
-
+	// if the texture loaded successfully
 	if (m_texture.loadFromFile(filename))
-	{
-		// TODO: allow library users to customise size of textures
-
-		sf::IntRect subrect;
-//		subrect.width = m_texture.getSize().x;
-//		subrect.height = m_texture.getSize().y / _TEX_COUNT;
-
-		subrect.width = 6;
-		subrect.height = 6;
-
-		if (debug)
-		{
-			// TODO: completely reload the texture
-			subrect.left = 6;
-		}
-
-		for (int i = 0; i < _TEX_COUNT; ++i)
-		{
-			m_subrects[i] = subrect;
-			subrect.top += subrect.height;
-		}
-
-		borderSize = subrect.width / 3;
-		return true;
-	}
+		// if we are able to successfully update the texture
+		if (updateTexture(debug))
+			return true;
 
 	return false;
+}
+
+bool Theme::loadTexture(const sf::Texture* texture, bool debug)
+{
+	if (texture) // if it's actually a valid pointer
+	{
+		m_texture = *texture;
+
+		// if we are able to successfully update the texture
+		if (updateTexture(debug))
+			return true;
+	}
+
+	return true;
 }
 
 const sf::Font& Theme::getFont()
@@ -170,6 +157,8 @@ sf::Color Theme::hexToRgb(std::string hexcolor)
 //	if (hexcolor.length > 7)
 //		return;
 
+//	std::cout << "converting " << hexcolor << std::endl;
+
 	// TODO: improve this
 	if (hexcolor[0] != '#')
 		hexcolor.insert(0, "#");
@@ -188,7 +177,40 @@ sf::Color Theme::hexToRgb(std::string hexcolor)
 		color.b = sf::Uint8( strtoul(hexcolor.substr(3, 1).c_str(), NULL, 16) * 17 );
 	}
 
+//	std::cout << "result " << std::to_string(color.r) << ", " << std::to_string(color.g) << ", " << std::to_string(color.b) << std::endl;
+
 	return color;
+}
+
+bool Theme::updateTexture(bool debug)
+{
+	// TODO: get color from style sheet
+	// get the color of the last row of pixels in the style sheet
+	// perhaps the last block of 8 x 8 pixels can be retrieved
+	// SFUI::Theme::windowBgColor = SFUI::Theme::getThemeColor(2);
+	// the color of the 2nd pixel from 0
+
+	sf::IntRect subrect;
+	//		subrect.width = m_texture.getSize().x;
+	//		subrect.height = m_texture.getSize().y / _TEX_COUNT;
+
+	subrect.width = 6;
+	subrect.height = 6;
+
+	if (debug)
+	{
+		// TODO: completely reload the texture
+		subrect.left = 6;
+	}
+
+	for (int i = 0; i < _TEX_COUNT; ++i)
+	{
+		m_subrects[i] = subrect;
+		subrect.top += subrect.height;
+	}
+
+	borderSize = subrect.width / 3;
+	return true;
 }
 
 }

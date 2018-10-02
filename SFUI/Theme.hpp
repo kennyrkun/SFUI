@@ -21,9 +21,12 @@ public:
 	static bool loadFont(const std::string& path);
 	static const sf::Font& getFont();
 
-	// Load the GUI spritesheet
+	// Load the GUI spritesheet from a file
 	// debug: load the texture's debug strip.
 	static bool loadTexture(const std::string& path, bool debug = false);
+	// Load the GUI spritesheet from an already loaded texture.
+	// debug: load the texture's debug strip.
+	static bool loadTexture(const sf::Texture* texture, bool debug = false);
 	static const sf::Texture& getTexture();
 
 	// Returns the rect of the Box's corresponding State on the spritesheet
@@ -148,6 +151,10 @@ private:
 	static sf::Texture m_texture;
 
 	static sf::IntRect m_subrects[TextureID::_TEX_COUNT];
+
+	// updates the current texture.
+	// debug: whether or not to use the debug side of the texture
+	static bool updateTexture(bool debug = false);
 };
 
 }
