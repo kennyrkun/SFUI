@@ -17,8 +17,10 @@ namespace SFUI
 class Theme
 {
 public:
-	// Load the GUI global font
+	// Load the GUI global font from a file
 	static bool loadFont(const std::string& path);
+	// Load the GUI global font from an already loaded font.
+	static bool loadFont(const sf::Font* font);
 	static const sf::Font& getFont();
 
 	// Load the GUI spritesheet from a file

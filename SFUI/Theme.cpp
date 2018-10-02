@@ -26,6 +26,22 @@ bool Theme::loadFont(const std::string& filename)
 	return m_font.loadFromFile(filename);
 }
 
+bool Theme::loadFont(const sf::Font* font)
+{
+	if (font)
+	{
+		m_font = *font;
+		return true;
+	}
+
+	return false;
+}
+
+const sf::Font& Theme::getFont()
+{
+	return m_font;
+}
+
 bool Theme::loadTexture(const std::string& filename, bool debug)
 {
 	// if the texture loaded successfully
@@ -49,11 +65,6 @@ bool Theme::loadTexture(const sf::Texture* texture, bool debug)
 	}
 
 	return true;
-}
-
-const sf::Font& Theme::getFont()
-{
-	return m_font;
 }
 
 const sf::Texture& Theme::getTexture()
