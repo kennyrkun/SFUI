@@ -94,7 +94,7 @@ void SpriteButton::onMouseMoved(float x, float y)
 {
 	if (isFocused())
 	{
-		if (containsPoint({x, y}) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (containsPoint({ x, y }) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			press();
 		else
 			release();
@@ -102,7 +102,7 @@ void SpriteButton::onMouseMoved(float x, float y)
 
 	if (getState() == State::Pressed)
 	{
-		if (containsPoint(sf::Vector2f(x, y)))
+		if (containsPoint({ x, y })) // TODO: check if this should check if left mouse button is pressed
 			press();
 		else
 			release();
@@ -119,9 +119,7 @@ void SpriteButton::onMouseReleased(float x, float y)
 	release();
 
 	if (containsPoint({x, y}))
-	{
 		triggerCallback();
-	}
 }
 
 void SpriteButton::onKeyPressed(sf::Keyboard::Key key)
@@ -155,6 +153,14 @@ void SpriteButton::release()
 		m_pressed = false;
 		m_text.move(0, -1);
 	}
+}
+
+void SpriteButton::centerText(sf::Text& text)
+{
+	sf::FloatRect t = text.getLocalBounds();
+	sf::FloatRect b = m_background.getLocalBounds();
+
+	text.setPosition(int(b.width - t.width) / 2, (int(b.height - t.height) / 2) - 4);
 }
 
 }

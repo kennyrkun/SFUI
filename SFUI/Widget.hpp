@@ -87,11 +87,6 @@ protected:
 	// Returns the layout, if the widget is one.
 	virtual Layout* toLayout() { return NULL; }
 
-	// Centers text in objects.
-	// TODO: this is only used in SpriteButton.
-	// look into moving this function into that class.
-	void centerText(sf::Text& text);
-
 	virtual void recomputeGeometry() {};
 
 	const sf::Transform& getTransform() const;

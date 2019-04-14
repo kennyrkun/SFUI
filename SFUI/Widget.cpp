@@ -111,12 +111,6 @@ const sf::Transform& Widget::getTransform() const
 	return m_transform;
 }
 
-void Widget::centerText(sf::Text& text)
-{
-	sf::FloatRect r = text.getLocalBounds();
-	text.setPosition(int(m_size.x - r.width) / 2, int(m_size.y - r.height) / 2);
-}
-
 // callbacks
 
 void Widget::onStateChanged(State) {}

@@ -41,6 +41,8 @@ private:
 	sf::Text   m_text;
 	sf::Sprite m_background;
 	bool       m_pressed;
+
+	void centerText(sf::Text& text);
 };
 
 }
