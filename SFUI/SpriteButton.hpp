@@ -6,9 +6,10 @@
 namespace SFUI
 {
 
-// TODO: why is this different than the other things?
+// TODO: why is this different than the other Buttons?
+// TODO: SpriteButton doesn't release when mouse is moved out of bounds
 
-// Push button linked to a sprite sheet
+// Button with custom spritesheet and text options.
 class SpriteButton : public Widget
 {
 public:
@@ -44,4 +45,4 @@ private:
 
 }
 
-#endif // SFUI_SPRITEBUTTON_HPP
+#endif // !SFUI_SPRITEBUTTON_HPP

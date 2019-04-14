@@ -6,7 +6,7 @@
 namespace SFUI
 {
 
-SpriteButton::SpriteButton(const sf::Texture& texture, const sf::String& string) : Widget(), m_pressed(false)
+SpriteButton::SpriteButton(const sf::Texture& texture, const sf::String& string) : m_pressed(false)
 {
 	size_t width = texture.getSize().x;
 	size_t height = texture.getSize().y / 4; // default, hover, pressed, focus
@@ -82,8 +82,10 @@ void SpriteButton::onStateChanged(State state)
 		m_background.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
 		break;
 	case State::Pressed:
-	case State::Focused:
 		m_background.setTextureRect(sf::IntRect(0, size.y * 2, size.x, size.y));
+		break;
+	case State::Focused:
+		m_background.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
 		break;
 	}
 }
@@ -93,6 +95,14 @@ void SpriteButton::onMouseMoved(float x, float y)
 	if (isFocused())
 	{
 		if (containsPoint({x, y}) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			press();
+		else
+			release();
+	}
+
+	if (getState() == State::Pressed)
+	{
+		if (containsPoint(sf::Vector2f(x, y)))
 			press();
 		else
 			release();
@@ -118,8 +128,8 @@ void SpriteButton::onKeyPressed(sf::Keyboard::Key key)
 {
 	if (key == sf::Keyboard::Return)
 	{
-		triggerCallback();
 		press();
+		triggerCallback();
 	}
 }
 
