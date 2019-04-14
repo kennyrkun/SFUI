@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef _WIN32
 	#include <SFML/OpenGL.hpp>
 #endif
 
@@ -12,7 +12,7 @@ InputBox::InputBox(float width) : m_box(Box::Type::Input), m_cursor_pos(0), m_ma
 {
 	m_box.setSize(width, Theme::getBoxHeight());
 
-	int offset = Theme::borderSize + Theme::PADDING;
+	float offset = Theme::borderSize + Theme::PADDING;
 	m_text.setFont(Theme::getFont());
 	m_text.setPosition(offset, offset);
 	m_text.setFillColor(Theme::input.textColor);
@@ -208,7 +208,7 @@ void InputBox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform();
 	target.draw(m_box, states);
 
-#ifdef WIN32
+#ifdef _WIN32
 	// Crop the text with GL Scissor
 	glEnable(GL_SCISSOR_TEST);
 

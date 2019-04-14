@@ -151,7 +151,6 @@
     <ClCompile Include="Utils\Box.cpp" />
     <ClCompile Include="Utils\Cross.cpp" />
     <ClCompile Include="Widget.cpp" />
-    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
@@ -176,7 +175,6 @@
     <ClInclude Include="Utils\Cross.hpp" />
     <ClInclude Include="Utils\ItemBox.hpp" />
     <ClInclude Include="Widget.hpp" />
-    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ComboBox.inl" />

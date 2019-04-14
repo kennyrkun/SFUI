@@ -6,8 +6,8 @@ namespace SFUI
 
 CheckBox::CheckBox(bool checked) : m_box(Box::Type::Tick)
 {
-	int offset = Theme::PADDING + Theme::borderSize;
-	float box_size = m_cross.getSize().x + offset * 2;
+	float offset = Theme::PADDING + Theme::borderSize;
+	float box_size = m_cross.getSize().x + offset * 2.0f;
 
 	m_box.setSize(box_size, box_size);
 	m_cross.setPosition(offset, offset);

@@ -18,8 +18,8 @@ void Button::setString(const sf::String& string)
 	m_box.item().setString(string);
 
 	// Recompute widget width
-	int fittingWidth = m_box.item().getLocalBounds().width + Theme::PADDING * 2 + Theme::borderSize * 2;
-	int width = std::max(fittingWidth, Theme::minWidgetWidth);
+	float fittingWidth = m_box.item().getLocalBounds().width + Theme::PADDING * 2.0f + Theme::borderSize * 2.0f;
+	float width = std::max(fittingWidth, Theme::minWidgetWidth);
 
 	m_box.setSize(width, Theme::getBoxHeight());
 	m_box.centerText(m_box.item());

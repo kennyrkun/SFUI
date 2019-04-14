@@ -8,8 +8,8 @@ Theme::TextStyle Theme::label;
 Theme::TextStyle Theme::click;
 Theme::TextStyle Theme::input;
 sf::Color Theme::windowBgColor;
-int       Theme::borderSize = 1.f;
-int       Theme::minWidgetWidth = 86;
+float     Theme::borderSize = 1.f;
+float     Theme::minWidgetWidth = 86;
 float     Theme::PADDING = 1.f;
 float     Theme::MARGIN = 7.f;
 
@@ -19,7 +19,6 @@ sf::Keyboard::Key Theme::previousWidgetKey = sf::Keyboard::Up;
 sf::Font Theme::m_font;
 sf::Texture Theme::m_texture;
 sf::IntRect Theme::m_subrects[_TEX_COUNT];
-
 
 bool Theme::loadFont(const std::string& filename)
 {
