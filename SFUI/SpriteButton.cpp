@@ -128,13 +128,19 @@ void SpriteButton::onKeyPressed(sf::Keyboard::Key key)
 	{
 		press();
 		triggerCallback();
+		// HACK: we don't have to do this in onMousePressed, why do we have to do it here?
+		onStateChanged(State::Pressed);
 	}
 }
 
 void SpriteButton::onKeyReleased(sf::Keyboard::Key key)
 {
 	if (key == sf::Keyboard::Return)
+	{
 		release();
+		// HACK: we don't have to do this in onMousePressed, why do we have to do it here?
+		onStateChanged(State::Focused);
+	}
 }
 
 void SpriteButton::press()
