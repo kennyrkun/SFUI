@@ -55,6 +55,7 @@ public:
 
 	// callbacks
 	virtual void onStateChanged(State state);
+	virtual void onWindowLostFocus();
 	virtual void onMouseMoved(float x, float y);
 	virtual void onMousePressed(float x, float y);
 	virtual void onMouseReleased(float x, float y);

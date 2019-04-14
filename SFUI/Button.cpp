@@ -59,6 +59,11 @@ void Button::onMouseMoved(float x, float y)
 void Button::onMouseReleased(float x, float y)
 {
 	// TODO: allow changing triggerCallback on mouseRelease or mousePress
+
+	// FIXME: issue #3
+//	std::cout << x << std::endl;
+//	std::cout << y << std::endl;
+
 	if (containsPoint(sf::Vector2f(x, y)))
 		triggerCallback();
 }

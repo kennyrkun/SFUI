@@ -108,6 +108,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../SFML/include;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -142,6 +143,7 @@
     <ClCompile Include="Layouts\Menu.cpp" />
     <ClCompile Include="Layouts\VerticalBoxLayout.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
+    <ClCompile Include="SFUI.cpp" />
     <ClCompile Include="Slider.cpp" />
     <ClCompile Include="SpriteButton.cpp" />
     <ClCompile Include="Theme.cpp" />
@@ -149,6 +151,7 @@
     <ClCompile Include="Utils\Box.cpp" />
     <ClCompile Include="Utils\Cross.cpp" />
     <ClCompile Include="Widget.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
@@ -173,6 +176,7 @@
     <ClInclude Include="Utils\Cross.hpp" />
     <ClInclude Include="Utils\ItemBox.hpp" />
     <ClInclude Include="Widget.hpp" />
+    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ComboBox.inl" />

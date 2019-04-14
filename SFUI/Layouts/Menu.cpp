@@ -60,6 +60,10 @@ int Menu::onEvent(const sf::Event& event)
 		onTextEntered(event.text.unicode);
 		break;
 
+	case sf::Event::LostFocus:
+		onWindowLostFocus();
+		break;
+
 	default:
 		break;
 	}

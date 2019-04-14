@@ -58,14 +58,20 @@
     <ClCompile Include="Layouts\Menu.cpp">
       <Filter>Source Files\Layouts</Filter>
     </ClCompile>
-    <ClCompile Include="Layouts\Layout.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\Arrow.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="Utils\Box.cpp">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SFUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouts\Layout.cpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +88,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="InputBox.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\ItemBox.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Label.hpp">
@@ -135,16 +138,22 @@
     <ClInclude Include="Utils\Box.hpp">
       <Filter>Source Files\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\ItemBox.hpp">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ComboBox.inl">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="Utils\ItemBox.inl">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="OptionsBox.inl">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="Utils\ItemBox.inl">
+      <Filter>Source Files\Util</Filter>
     </None>
   </ItemGroup>
 </Project>

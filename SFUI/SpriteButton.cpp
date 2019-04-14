@@ -17,7 +17,7 @@ SpriteButton::SpriteButton(const sf::Texture& texture, const sf::String& string)
 	setSize(sf::Vector2f(width, height));
 
 	m_text.setFont(Theme::getFont());
-	m_text.setCharacterSize(Theme::fontSize);
+	m_text.setCharacterSize(Theme::textCharacterSize);
 
 	setString(string);
 }

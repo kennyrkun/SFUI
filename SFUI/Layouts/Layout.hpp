@@ -3,7 +3,6 @@
 
 #include "../Widget.hpp"
 
-
 namespace SFUI
 {
 
@@ -17,7 +16,7 @@ class VerticalBoxLayout;
 // Base class for layouts.
 // Layouts are special widgets which act as containers.
 // See FormLayout, HorizontalBoxLayout and VerticalBoxLayout
-// ---- This function is NOT intended to be used outside the API.
+// ---- This class is NOT intended to be used outside the API.
 // TODO: add outlines to each layout, so they can visually be debugged
 class Layout : public Widget
 {
@@ -35,6 +34,9 @@ public:
 	FormLayout*			 addFormLayout();
 	HorizontalBoxLayout* addHorizontalBoxLayout();
 	VerticalBoxLayout*	 addVerticalBoxLayout();
+
+	// returns true if the container has a focused widget inside
+	bool hasFocusedWidgetInside() { return m_focus != nullptr; }
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

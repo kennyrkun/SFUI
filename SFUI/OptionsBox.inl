@@ -32,13 +32,13 @@ void OptionsBox<T>::addItem(const sf::String& label, const T& value, bool select
 	m_items.push_back(Item(label, value));
 
 	m_box.item().setString(label);
-	int width = m_box.item().getLocalBounds().width + (Theme::getBoxHeight() * 2) + (Theme::PADDING * 2);
+	float width = m_box.item().getLocalBounds().width + (Theme::getBoxHeight() * 2.0f) + (Theme::PADDING * 2.0f);
 
 	// Check if box needs to be resized
 	if (width > getSize().x)
 	{
 		m_box.setSize(width, Theme::getBoxHeight());
-		m_arrow_right.setPosition(width - Theme::getBoxHeight(), 0);
+		m_arrow_right.setPosition(width - Theme::getBoxHeight(), 0.0f);
 		m_arrow_right.centerItem(m_arrow_right.item());
 		setSize(m_box.getSize());
 	}

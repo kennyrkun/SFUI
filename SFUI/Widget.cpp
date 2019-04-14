@@ -120,6 +120,7 @@ void Widget::centerText(sf::Text& text)
 // callbacks
 
 void Widget::onStateChanged(State) {}
+void Widget::onWindowLostFocus() {}
 void Widget::onMouseMoved(float, float) {}
 void Widget::onMousePressed(float, float) {}
 void Widget::onMouseReleased(float, float) {}

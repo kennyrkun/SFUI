@@ -66,6 +66,7 @@ Widget* Layout::push(Widget* widget)
 
 	if (m_first == NULL)
 	{
+		// TODO: what?
 		m_first = m_last = widget;
 	}
 	else
@@ -152,6 +153,9 @@ void Layout::onMouseMoved(float x, float y)
 void Layout::onMousePressed(float x, float y)
 {
 	// TODO: focus widget on mousePress, not mouseRelease. might only apply to OptionBox
+	// TODO: this method gets called more than once, apparently
+
+//	std::cout << "layout on mouse pressed" << std::endl;
 
 	if (m_hover != NULL)
 	{
@@ -160,6 +164,9 @@ void Layout::onMousePressed(float x, float y)
 
 		// Send event to widget
 		sf::Vector2f mouse = sf::Vector2f(x, y) - m_hover->getPosition();
+		// FIXME: multiple layout press events (cause of #3)
+//		std::cout << "mouseX: " << mouse.x << std::endl;
+//		std::cout << "mouseY: " << mouse.y << std::endl;
 		m_hover->onMousePressed(mouse.x, mouse.y);
 	}
 	// User didn't click on a widget, remove focus state
@@ -229,10 +236,9 @@ void Layout::onTextEntered(sf::Uint32 unicode)
 void Layout::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
+
 	for (const Widget* widget = m_first; widget != NULL; widget = widget->m_next)
-	{
 		target.draw(*widget, states);
-	}
 }
 
 bool Layout::focusWidget(Widget* widget, State state)

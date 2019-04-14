@@ -7,6 +7,8 @@
 namespace SFUI
 {
 
+// TODO: make text optional
+
 // Horizontal progress bar.
 // Passive: Cannot be focused or trigger an event.
 class ProgressBar : public Widget
