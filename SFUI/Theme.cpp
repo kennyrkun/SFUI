@@ -7,6 +7,8 @@ size_t    Theme::textCharacterSize = 12;
 Theme::TextStyle Theme::label;
 Theme::TextStyle Theme::click;
 Theme::TextStyle Theme::input;
+sf::Color Theme::tickColor = sf::Color::White;
+sf::Color Theme::arrowColor = sf::Color::White;
 sf::Color Theme::windowBgColor;
 float     Theme::borderSize = 1.f;
 float     Theme::minWidgetWidth = 86;
@@ -63,7 +65,7 @@ bool Theme::loadTexture(const sf::Texture* texture, bool debug)
 			return true;
 	}
 
-	return true;
+	return false;
 }
 
 const sf::Texture& Theme::getTexture()
@@ -220,6 +222,7 @@ bool Theme::updateTexture(bool debug)
 	}
 
 	borderSize = subrect.width / 3;
+
 	return true;
 }
 

@@ -75,6 +75,9 @@ public:
 	// Used for text in InputBoxes
 	static TextStyle input;
 
+	static sf::Color tickColor;
+	static sf::Color arrowColor;
+
 	static sf::Color windowBgColor;
 	static float borderSize; // I think this is unused, but normally it would be the size of lines around things like buttons and sliders
 	static float minWidgetWidth;
@@ -83,19 +86,19 @@ public:
 	static float MARGIN;  // Spacing between widgets
 
 	// TODO: more keys for stuff
-//	static sf::Keyboard::Key accept;
-//	static sf::Keyboard::Key firstWidget;
+//	static sf::Keyboard::Key returns = sf::Keyboard::Key::Return;
+//	static sf::Keyboard::Key firstWidget = sf::Keyboard::Key::Home;
 	static sf::Keyboard::Key previousWidgetKey;
 	static sf::Keyboard::Key nextWidgetKey;
-//	static sf::Keyboard::Key lastWidget;
-//	static sf::Keyboard::Key back;
-//	static sf::Keyboard::Key forward;
-//	static sf::Keyboard::Key undo;
-//	static sf::Keyboard::Key paste;
-//	static sf::Keyboard::Key copy;
+//	static sf::Keyboard::Key lastWidget = sf::Keyboard::Key::End;
+//	static sf::Keyboard::Key back = sf::Keyboard::Key::BackSpace | sf::Keyboard::Key::Esc;
+//	static sf::Keyboard::Key cancel = sf::Keyboard::Key::Esc;
 
-//	bool triggerCallbackOnKeyRelease = false;
-//	bool triggerCallbackOnKeyPress = true;
+	enum class TriggerCallback
+	{
+		OnPress,
+		OnRelease
+	} callbackTriggerMode = TriggerCallback::OnRelease;
 
 private:
 	enum TextureID

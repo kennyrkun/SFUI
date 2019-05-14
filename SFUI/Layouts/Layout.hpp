@@ -38,6 +38,11 @@ public:
 	// returns true if the container has a focused widget inside
 	bool hasFocusedWidgetInside() { return m_focus != nullptr; }
 
+	// Give the focus to a widget, if applicable
+	// state: new state of the widget if it took focus
+	// true if widget took the focus, otherwise false
+	bool focusWidget(Widget* widget, State state = State::Focused);
+
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -62,11 +67,6 @@ protected:
 	Widget* getFirstWidget();
 
 private:
-	// Give the focus to a widget, if applicable
-	// state: new state of the widget if it took focus
-	// true if widget took the focus, otherwise false
-	bool focusWidget(Widget* widget, State state = State::Focused);
-
 	Widget*   m_first;
 	Widget*   m_last;
 	Widget*   m_hover;

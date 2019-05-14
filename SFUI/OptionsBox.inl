@@ -122,8 +122,8 @@ template <class T>
 void OptionsBox<T>::onStateChanged(State state)
 {
 	// Hovered state is handled in the onMouseMoved callback
-	if (state == State::Pressed)
-		state = State::Focused;
+	//if (state == State::Pressed)
+		//state = State::Focused;
 
 	if (state == State::Default || state == State::Focused)
 	{

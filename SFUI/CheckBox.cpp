@@ -11,7 +11,7 @@ CheckBox::CheckBox(bool checked) : m_box(Box::Type::Tick)
 
 	m_box.setSize(box_size, box_size);
 	m_cross.setPosition(offset, offset);
-	m_cross.setColor(Theme::input.textColor);
+	m_cross.setColor(Theme::tickColor);
 
 	check(checked);
 
