@@ -4,10 +4,9 @@
 namespace SFUI
 {
 
-Menu::Menu(sf::RenderTarget& window):
-	m_window(window),
-	m_triggered(NULL)
+Menu::Menu(sf::RenderTarget& window) : m_window(window), m_triggered(NULL)
 {
+	// do nothing
 }
 
 int Menu::onEvent(const sf::Event& event)
