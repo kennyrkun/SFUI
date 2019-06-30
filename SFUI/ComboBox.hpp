@@ -12,6 +12,7 @@ namespace SFUI
 // TODO: scrollbar for combobox
 // TODO: finish
 // TODO: borders for dropdown
+// TODO: minimum length decidable
 
 // Selection widget that displays the current item, 
 // and can pop up a list of selectable items.
