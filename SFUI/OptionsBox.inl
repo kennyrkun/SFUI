@@ -43,7 +43,8 @@ void OptionsBox<T>::addItem(const sf::String& label, const T& value, bool select
 		setSize(m_box.getSize());
 	}
 
-	selectItem(m_items.size() - 1);
+	if (select)
+		selectItem(m_items.size() - 1);
 }
 
 template <class T>
