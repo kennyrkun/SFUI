@@ -41,7 +41,7 @@ public:
 	// Returns the widget's Window coordinates.
 	sf::Vector2f getAbsolutePosition() const;
 
-	// Get widget's dimensions1
+	// Get widget's dimensions
 	const sf::Vector2f& getSize() const;
 
 	// Check if a point is inside the widget
