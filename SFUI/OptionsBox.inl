@@ -43,8 +43,11 @@ void OptionsBox<T>::addItem(const sf::String& label, const T& value, bool select
 		setSize(m_box.getSize());
 	}
 
+
 	if (select)
 		selectItem(m_items.size() - 1);
+	else
+		m_box.centerText(m_box.item());
 }
 
 template <class T>
