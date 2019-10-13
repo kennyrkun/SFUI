@@ -152,6 +152,7 @@
     <ClCompile Include="Layouts\Layout.cpp" />
     <ClCompile Include="Layouts\Menu.cpp" />
     <ClCompile Include="Layouts\VerticalBoxLayout.cpp" />
+    <ClCompile Include="MultilineInputBox.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="SFUI.cpp" />
     <ClCompile Include="Slider.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Layouts\Layout.hpp" />
     <ClInclude Include="Layouts\Menu.hpp" />
     <ClInclude Include="Layouts\VerticalBoxLayout.hpp" />
+    <ClInclude Include="MultilineInputBox.hpp" />
     <ClInclude Include="OptionsBox.hpp" />
     <ClInclude Include="ProgressBar.hpp" />
     <ClInclude Include="SFUI.hpp" />

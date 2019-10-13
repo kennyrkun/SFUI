@@ -13,6 +13,7 @@ int main()
 	enum Callbacks
 	{
 		TEXT,
+		TEXT_LARGE,
 		COLOR,
 		ROTATION,
 		BOLD,
@@ -57,18 +58,23 @@ int main()
 		textbox->setText("Hello, World!");
 		form->addRow("Text", textbox, Callbacks::TEXT);
 
+		form->addRow("Lots of Text", new SFUI::MultilineInputBox, Callbacks::TEXT_LARGE);
+
 		// Slider for rotation
 		SFUI::Slider* sliderRotation = new SFUI::Slider();
 		sliderRotation->setQuantum(1);
 		form->addRow("Rotation", sliderRotation, Callbacks::ROTATION);
 
-		// Progress bar
-		SFUI::ProgressBar* pbar0 = new SFUI::ProgressBar();
-		form->add(pbar0);
-
 		// Slider for scale
 		SFUI::Slider* sliderScale = new SFUI::Slider();
 		form->addRow("Scale", sliderScale, Callbacks::SCALE);
+
+		// Progress bars
+		SFUI::HorizontalBoxLayout* pbarbox = form->addHorizontalBoxLayout();
+		SFUI::ProgressBar* pbar0 = new SFUI::ProgressBar(96);
+		SFUI::ProgressBar* pbar1 = new SFUI::ProgressBar(96);
+		pbarbox->add(pbar0);
+		pbarbox->add(pbar1);
 
 		// OptionsBox for color
 		SFUI::OptionsBox<sf::Color>* opt = new SFUI::OptionsBox<sf::Color>();
@@ -177,6 +183,7 @@ int main()
 				{
 					float scale = 1 + sliderScale->getValue() * 2 / 100.f;
 					text.setScale(scale, scale);
+					pbar1->setValue(sliderScale->getValue());
 					break;
 				}
 				case Callbacks::QUIT:

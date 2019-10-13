@@ -14,6 +14,7 @@
 #include "Slider.hpp"
 #include "SpriteButton.hpp"
 #include "InputBox.hpp"
+#include "MultilineInputBox.hpp"
 
 // TODO: look into making Widgets more easily added on to
 // ComboBox

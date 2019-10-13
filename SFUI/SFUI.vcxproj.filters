@@ -70,6 +70,9 @@
     <ClCompile Include="Layouts\Layout.cpp">
       <Filter>Source Files\Layouts</Filter>
     </ClCompile>
+    <ClCompile Include="MultilineInputBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="Utils\ItemBox.hpp">
       <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="MultilineInputBox.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
