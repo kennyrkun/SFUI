@@ -213,7 +213,7 @@ void InputBox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	glEnable(GL_SCISSOR_TEST);
 
 	sf::Vector2f pos = getAbsolutePosition();
-	glScissor((pos.x + Theme::borderSize) - 1, target.getSize().y - (pos.y + getSize().y), getSize().x - 2, getSize().y);
+	glScissor((pos.x + Theme::borderSize) - 1, target.getSize().y - (pos.y + getSize().y) + 1, getSize().x - 2, getSize().y - 2);
 	target.draw(m_text, states);
 
 	glDisable(GL_SCISSOR_TEST);
