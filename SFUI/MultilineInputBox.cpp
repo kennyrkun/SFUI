@@ -86,55 +86,38 @@ void MultilineInputBox::setCursorPosition(size_t index)
 			m_cursor.move(diff, 0);
 		}
 
-		if (m_cursor.getPosition().y > getSize().y - padding)
+		if (m_cursor.getPosition().y + m_cursor.getSize().y > getSize().y - padding)
 		{
-			// Shift text on up
+			std::cout << "shifting up" << std::endl;
+			// Shift text up
 			float diff = m_cursor.getPosition().y - getSize().y + padding;
 			m_text.move(0, -diff);
 			m_cursor.move(0, -diff);
 		}
 		else if (m_cursor.getPosition().y < padding)
 		{
-			// Shift text on down
+			std::cout << "shifting down" << std::endl;
+			// Shift text down
 			float diff = padding - m_cursor.getPosition().y;
 			m_text.move(0, diff);
 			m_cursor.move(0, diff);
 		}
 
-		float text_width = m_text.getLocalBounds().width;
+		sf::Vector2f textSize = { m_text.getLocalBounds().width, m_text.getLocalBounds().height };
 
 		if (m_text.getPosition().x < padding
-			&& m_text.getPosition().x + text_width < getSize().x - padding)
+			&& m_text.getPosition().x + textSize.x < getSize().x - padding)
 		{
-			float diff = (getSize().x - padding) - (m_text.getPosition().x + text_width);
+			float diff = (getSize().x - padding) - (m_text.getPosition().x + textSize.x);
 			m_text.move(diff, 0);
 			m_cursor.move(diff, 0);
 
 			// If text is smaller than the textbox, force align on left
-			if (text_width < (getSize().x - padding * 2))
+			if (textSize.x < (getSize().x - padding * 2))
 			{
 				diff = padding - m_text.getPosition().x;
 				m_text.move(diff, 0);
 				m_cursor.move(diff, 0);
-			}
-		}
-
-
-		float text_height = m_text.getLocalBounds().width;
-
-		if (m_text.getPosition().y < padding
-			&& m_text.getPosition().y + text_height > getSize().y - padding)
-		{
-			float diff = (getSize().y - padding) - (m_text.getPosition().y + text_height);
-			m_text.move(0, diff);
-			m_cursor.move(0, diff);
-
-			// If text is smaller than the textbox, force align on left
-			if (text_height > (getSize().y - padding * 2))
-			{
-				diff = padding - m_text.getPosition().y;
-				m_text.move(0, diff);
-				m_cursor.move(0, diff);
 			}
 		}
 	}
