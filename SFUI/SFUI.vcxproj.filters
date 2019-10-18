@@ -1,56 +1,159 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Sources">
+    <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Sources\Objects">
-      <UniqueIdentifier>{de9770c4-3967-4163-aad0-53d883b403db}</UniqueIdentifier>
+    <Filter Include="Source Files\Layouts">
+      <UniqueIdentifier>{d005f9ce-5fc0-4438-b34f-030aa7ea0ad9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\SFUI">
-      <UniqueIdentifier>{470c8656-04a8-42bc-9fcf-67e0c711999e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Objects\Button">
-      <UniqueIdentifier>{cce6a281-3afa-4fa9-b68c-4467f5efab91}</UniqueIdentifier>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{4b082729-7843-43b0-aa1c-e4b3675c075b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Object.cpp">
-      <Filter>Sources\Objects</Filter>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scrollbar.cpp">
-      <Filter>Sources\Objects</Filter>
+    <ClCompile Include="CheckBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SFUI.cpp">
-      <Filter>Sources\SFUI</Filter>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\IconButton.cpp">
-      <Filter>Sources\Objects\Button</Filter>
+    <ClCompile Include="InputBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextButton.cpp">
-      <Filter>Sources\Objects\Button</Filter>
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\BaseButton.cpp">
-      <Filter>Sources</Filter>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Theme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Cross.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouts\FormLayout.cpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouts\HorizontalBoxLayout.cpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouts\VerticalBoxLayout.cpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouts\Menu.cpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Arrow.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Box.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SFUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouts\Layout.cpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="MultilineInputBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Object.hpp">
-      <Filter>Sources\Objects</Filter>
+    <ClInclude Include="Button.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scrollbar.hpp">
-      <Filter>Sources\Objects</Filter>
+    <ClInclude Include="CheckBox.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\SFUI.hpp">
-      <Filter>Sources\SFUI</Filter>
+    <ClInclude Include="ComboBox.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\IconButton.hpp">
-      <Filter>Sources\Objects\Button</Filter>
+    <ClInclude Include="Image.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TextButton.hpp">
-      <Filter>Sources\Objects\Button</Filter>
+    <ClInclude Include="InputBox.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\BaseButton.hpp" />
+    <ClInclude Include="Label.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsBox.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBar.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SFUI.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteButton.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Theme.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Cross.hpp">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Layouts\HorizontalBoxLayout.hpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Layouts\FormLayout.hpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Layouts\VerticalBoxLayout.hpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Layouts\Menu.hpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Layouts\Layout.hpp">
+      <Filter>Source Files\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Arrow.hpp">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Box.hpp">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\ItemBox.hpp">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="MultilineInputBox.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ComboBox.inl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="OptionsBox.inl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Utils\ItemBox.inl">
+      <Filter>Source Files\Util</Filter>
+    </None>
   </ItemGroup>
 </Project>
