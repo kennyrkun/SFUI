@@ -1,5 +1,7 @@
 #include "ObjectPropertiesPanel.hpp"
 
+#include <iostream>
+
 WidgetEditor::WidgetEditor(sf::RenderWindow* window)
 {
 	menu = new SFUI::Menu(*window);
@@ -17,6 +19,8 @@ WidgetEditor::WidgetEditor(sf::RenderWindow* window)
 void WidgetEditor::setWidget(SFUI::Widget* widget)
 {
 	this->widget = widget;
+
+	std::cout << "set widget" << std::endl;
 }
 
 SFUI::Widget* WidgetEditor::getWidget() const

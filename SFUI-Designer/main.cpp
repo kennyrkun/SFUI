@@ -1,3 +1,5 @@
+#include "ObjectPropertiesPanel.hpp"
+
 #include <SFML/Graphics.hpp>
 #include <SFUI.hpp>
 
@@ -131,6 +133,10 @@ int main()
 	bool holdingWidget = false;
 	SFUI::Widget* heldWidget = nullptr;
 
+	SFUI::Widget* selectedWidget = nullptr;
+
+	WidgetEditor objectpanel(&window);
+
 	std::vector<SFUI::Widget*> widgets;
 
 	while (window.isOpen())
@@ -151,61 +157,88 @@ int main()
 			{
 				if (!holdingWidget)
 				{
-					for (auto& trigger : sidebar.triggers)
+					if (mouseIsOver(sidebar.barShape, window))
 					{
-						if (mouseIsOver(trigger.first, window))
+						for (auto& trigger : sidebar.triggers)
 						{
-							std::cout << "clicked over object: " << trigger.second << std::endl;
-
-							holdingWidget = true;
-
-							switch (trigger.second)
+							if (mouseIsOver(trigger.first, window))
 							{
-							case TriggerType::Button:
-								heldWidget = new SFUI::Button("Button");
-								break;
-							case TriggerType::Checkbox:
-								heldWidget = new SFUI::CheckBox;
-								break;
-							/*
-							case Sidebar::TriggerType::ComboBox:
-								heldWidget = new SFUI::ComboBox<std::string>(&window);
-								break;
-							*/
-							case TriggerType::Image:
-								heldWidget = new SFUI::Image;
-								break;
-							case TriggerType::InputBox:
-								heldWidget = new SFUI::InputBox;
-								break;
-							case TriggerType::Label:
-								heldWidget = new SFUI::Label("Label");
-								break;
-							case TriggerType::MultilineInputBox:
-								heldWidget = new SFUI::MultilineInputBox;
-								break;
-							case TriggerType::OptionsBox:
-								heldWidget = new SFUI::OptionsBox<std::string>;
-								break;
-							case TriggerType::ProgressBar:
-								heldWidget = new SFUI::ProgressBar;
-								break;
-							case TriggerType::Slider:
-								heldWidget = new SFUI::Slider;
-								break;
-							case TriggerType::SpriteButton:
-								heldWidget = new SFUI::SpriteButton(sidebar.spriteTexture);
-								break;
-							default:
-								std::cerr << "no object type was found" << std::endl;
+								std::cout << "clicked over sidebar object: " << trigger.second << std::endl;
+
+								holdingWidget = true;
+
+								switch (trigger.second)
+								{
+								case TriggerType::Button:
+									heldWidget = new SFUI::Button("Button");
+									break;
+								case TriggerType::Checkbox:
+									heldWidget = new SFUI::CheckBox;
+									break;
+									/*
+									case Sidebar::TriggerType::ComboBox:
+										heldWidget = new SFUI::ComboBox<std::string>(&window);
+										break;
+									*/
+								case TriggerType::Image:
+									heldWidget = new SFUI::Image;
+									break;
+								case TriggerType::InputBox:
+									heldWidget = new SFUI::InputBox;
+									break;
+								case TriggerType::Label:
+									heldWidget = new SFUI::Label("Label");
+									break;
+								case TriggerType::MultilineInputBox:
+									heldWidget = new SFUI::MultilineInputBox;
+									break;
+								case TriggerType::OptionsBox:
+									heldWidget = new SFUI::OptionsBox<std::string>;
+									break;
+								case TriggerType::ProgressBar:
+									heldWidget = new SFUI::ProgressBar;
+									break;
+								case TriggerType::Slider:
+									heldWidget = new SFUI::Slider;
+									break;
+								case TriggerType::SpriteButton:
+									heldWidget = new SFUI::SpriteButton(sidebar.spriteTexture);
+									break;
+								default:
+									std::cerr << "no object type was found" << std::endl;
+									break;
+								}
+
+								if (heldWidget == nullptr)
+									std::cerr << "fuck" << std::endl;
+
 								break;
 							}
-
-							if (heldWidget == nullptr)
-								std::cerr << "fuck" << std::endl;
-
-							break;
 						}
+					}
+					else
+					{
+						bool selectedSomeShit = false;
+
+						for (auto& widget : widgets)
+						{
+							sf::FloatRect bounds(widget->getAbsolutePosition(), widget->getSize());
+
+							if (bounds.contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
+							{
+								selectedWidget = widget;
+								heldWidget = widget;
+								holdingWidget = true;
+								selectedSomeShit = true;
+								break;
+							}
+						}
+
+						if (!selectedSomeShit)
+							// hide the widget panel
+							selectedWidget = nullptr;
+						else
+							objectpanel.setWidget(selectedWidget);
 					}
 				}
 			}
@@ -235,6 +268,7 @@ int main()
 		window.clear(SFUI::Theme::windowBgColor);
 
 		window.draw(sidebar);
+		window.draw(objectpanel);
 
 		if (holdingWidget)
 			window.draw(*heldWidget);
