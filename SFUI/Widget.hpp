@@ -1,7 +1,6 @@
 #ifndef SFUI_WIDGET_HPP
 #define SFUI_WIDGET_HPP
 
-#include <iostream>
 #include <SFML/Graphics.hpp>
 
 namespace SFUI

@@ -10,6 +10,7 @@ class Widget;
 class Label;
 class Button;
 class FormLayout;
+
 class HorizontalBoxLayout;
 class VerticalBoxLayout;
 
