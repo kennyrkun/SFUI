@@ -1,9 +1,7 @@
-#ifdef _WIN32
-	#include <SFML/OpenGL.hpp>
-#endif
-
 #include "InputBox.hpp"
 #include "Theme.hpp"
+
+#include <SFML/OpenGL.hpp>
 
 namespace SFUI
 {
@@ -208,8 +206,6 @@ void InputBox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform();
 	target.draw(m_box, states);
 
-#ifdef _WIN32
-	// Crop the text with GL Scissor
 	glEnable(GL_SCISSOR_TEST);
 
 	sf::Vector2f pos = getAbsolutePosition();
@@ -217,11 +213,6 @@ void InputBox::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_text, states);
 
 	glDisable(GL_SCISSOR_TEST);
-#else
-    // draw the text even though it won't have been cut.
-    // FIXME: this needs to go away when opengl can be linked
-	target.draw(m_text, states);
-#endif
 
 	// Show cursor if focused
 	if (isFocused())
