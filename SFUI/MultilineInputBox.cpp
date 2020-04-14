@@ -6,6 +6,9 @@
 	#include <SFML/OpenGL.hpp>
 #endif
 
+// TODO: this should be removed. we don't need to be outputting any information.
+#include <iostream>
+
 namespace SFUI
 {
 

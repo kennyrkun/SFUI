@@ -1,5 +1,8 @@
 #include "ComboBox.hpp"
 
+// TODO: we shouldn't be outputting anything, get rid of this
+#include <iostream>
+
 namespace SFUI
 {
 
