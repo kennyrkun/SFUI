@@ -21,7 +21,7 @@ template <class T>
 class ComboBox : public Widget
 {
 public:
-	ComboBox(sf::RenderWindow* window);
+	ComboBox();
 
 	// Append a new item in the list
 	// label: displayed label when selected
@@ -52,9 +52,6 @@ public:
 	// Is the drop down active?
 	bool isOpen() const { return m_open; }
 	
-	// custom overrides
-	bool containsPoint(const sf::Vector2f& point) const override;
-
 	// callbacks ---------------------------------------------------------------
 	void onStateChanged(State state);
 	void onMouseMoved(float x, float y);
@@ -78,10 +75,7 @@ private:
 		T value;
 	};
 
-	// TODO: make this a Map
-	typedef std::vector<Item> ItemVector;
-
-	ItemVector         m_items;
+	std::vector<Item>  m_items;
 	size_t             m_current_index;
 
 	// Visual components
@@ -91,10 +85,7 @@ private:
 
 	bool m_open = false;
 
-	sf::RenderWindow m_dropDownBox;
-	// FIXME: referencing another window here is probably overkill.
-	// I'd like to find a way to to do this without any outside help.
-	sf::RenderWindow* m_parentWindow;
+	sf::RectangleShape m_dropDownBackground;
 };
 
 }

@@ -7,7 +7,7 @@ namespace SFUI
 {
 
 template <class T>
-ComboBox<T>::ComboBox(sf::RenderWindow* window) : m_current_index(-1), m_box(Box::Type::Input), m_dropDownArrow(Arrow(Arrow::Direction::Bottom)), m_parentWindow(window)
+ComboBox<T>::ComboBox() : m_current_index(-1), m_box(Box::Type::Input), m_dropDownArrow(Arrow(Arrow::Direction::Bottom))
 {
 	// Build visual components
 	m_box.item().setFont(Theme::getFont());
@@ -93,22 +93,16 @@ template<class T>
 inline void ComboBox<T>::open()
 {
 	int stepSize = 20;
-	m_dropDownBox.create(sf::VideoMode(m_box.getSize().x + m_dropDownArrow.getSize().x - 1, m_items.size() * stepSize), "shhhhh bb is ok", sf::Style::None);
+	m_dropDownBackground.setSize(sf::Vector(m_box.getSize().x + m_dropDownArrow.getSize().x - 1, m_items.size() * stepSize));
 
-	// TODO: make this not suck
-	// cross platform (it will be misaligned on linux and osx
-	// it will be misaligned on windows that don't have borders
-	sf::Vector2i pos(m_parentWindow->getPosition().x + getAbsolutePosition().x + 8, m_parentWindow->getPosition().y + getAbsolutePosition().y + getSize().y + 29);
-	m_dropDownBox.setPosition(pos);
+	m_dropDownBackground.setPosition(getAbsolutePosition() + getSize());
 
 	m_open = true;
-	redrawDropDown();
 }
 
 template<class T>
 inline void ComboBox<T>::close()
 {
-	m_dropDownBox.close();
 	m_open = false;
 }
 
@@ -118,6 +112,9 @@ void ComboBox<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform();
 	target.draw(m_box, states);
 	target.draw(m_dropDownArrow, states);
+
+	if (m_open)
+		target.draw(m_dropDownBackground, states);
 }
 
 template <class T>
@@ -136,6 +133,7 @@ void ComboBox<T>::updateArrow(ItemBox<Arrow>& arrow, float x, float y)
 	}
 }
 
+/*
 template <class T>
 void ComboBox<T>::redrawDropDown()
 {
@@ -144,13 +142,13 @@ void ComboBox<T>::redrawDropDown()
 
 	if (m_open)
 	{
-		m_dropDownBox.clear(Theme::windowBgColor);
+		m_dropDownBackground.clear(Theme::windowBgColor);
 
 		sf::RectangleShape sel;
 		sel.setFillColor(Theme::hexToRgb("#958831"));
-		sel.setSize(sf::Vector2f(m_dropDownBox.getSize().x, stepSize));
+		sel.setSize(sf::Vector2f(m_dropDownBackground.getSize().x, stepSize));
 		sel.move(sf::Vector2f(0, getSelectedIndex() * stepSize));
-		m_dropDownBox.draw(sel);
+		m_dropDownBackground.draw(sel);
 
 		for (size_t i = 0; i < m_items.size(); i++)
 		{
@@ -160,8 +158,6 @@ void ComboBox<T>::redrawDropDown()
 			t.setString(m_items[i].label);
 			t.setFillColor(SFUI::Theme::click.textColor);
 			t.setPosition(sf::Vector2f(10, (stepSize * i) + 3));
-
-			m_dropDownBox.draw(t);
 		}
 
 		sf::RectangleShape outline;
@@ -175,44 +171,7 @@ void ComboBox<T>::redrawDropDown()
 		m_dropDownBox.display();
 	}
 }
-
-template<class T>
-inline bool ComboBox<T>::containsPoint(const sf::Vector2f& point) const
-{
-	// test for the drop down
-	if (m_open)
-	{
-		sf::FloatRect widget(sf::Vector2f(sf::Vector2f(0, 0)), sf::Vector2f(m_dropDownBox.getSize()));
-		if (widget.contains(sf::Vector2f(sf::Mouse::getPosition(m_dropDownBox))))
-		{
-			return true;
-		}
-	}
-
-	// test for the widget
-	sf::FloatRect widget(getAbsolutePosition(), getSize());
-
-	sf::RectangleShape t;
-	t.setSize(sf::Vector2f(widget.width, widget.height));
-	t.setPosition(widget.left, widget.top);
-
-	if (widget.contains(m_parentWindow->mapPixelToCoords(sf::Mouse::getPosition(*m_parentWindow))))
-	{
-		return true;
-
-		t.setFillColor(sf::Color::Red);
-	}
-
-	sf::CircleShape m;
-	m.setRadius(4);
-	m.setPosition(sf::Vector2f(sf::Mouse::getPosition(*m_parentWindow)));
-
-//	m_parentWindow->draw(t);
-//	m_parentWindow->draw(m);
-//	m_parentWindow->display();
-
-	return false;
-}
+*/
 
 // callbacks 
 
@@ -246,10 +205,10 @@ void ComboBox<T>::onMouseMoved(float x, float y)
 		for (size_t i = 0; i < m_items.size(); i++)
 		{
 			sf::Vector2f pos(0, i * stepSize);
-			sf::Vector2f size(m_dropDownBox.getSize().x, stepSize);
+			sf::Vector2f size(m_dropDownBackground.getSize().x, stepSize);
 			sf::FloatRect itemArea(pos, size);
 
-			if (itemArea.contains(m_dropDownBox.mapPixelToCoords(sf::Mouse::getPosition(m_dropDownBox))))
+			if (itemArea.contains(sf::Vector2f(x, y)))
 			{
 				selectItem(i);
 				redrawDropDown();
