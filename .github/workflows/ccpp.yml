@@ -1,0 +1,17 @@
+name: Ubuntu/C++ master
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: acquire SFML prerequisite libraries
+      run: sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev libudev-dev libopenal-dev libvorbis-dev libflac-dev libxrandr-dev
+    - name: get & build SFML
+      run: git clone https://github.com/SFML/SFML SFML/ && mkdir SFML/build && cd SFML/build && cmake .. && make && sudo make install
+    - name: build SFUI
+      run: mkdir SFUI/build && cd SFUI/build && cmake .. && make

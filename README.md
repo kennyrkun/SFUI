@@ -1,4 +1,4 @@
-SFUI -- Simple Fast User Interface
+SFUI -- Simple Fast User Interface -- ![Ubuntu/C++ master](https://github.com/kennyrkun/SFUI/workflows/Ubuntu/C++%20master/badge.svg?branch=master&event=push)
 
 SFUI is an interface system based on [Widgets](https://www.github.com/abodelot/sfml-widgets/) using [SFML](https://www.github.com/SFML/SFML)
 
