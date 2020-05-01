@@ -2,9 +2,7 @@
 
 #include "Theme.hpp"
 
-#ifdef _WIN32
-	#include <SFML/OpenGL.hpp>
-#endif
+#include <SFML/OpenGL.hpp>
 
 // TODO: this should be removed. we don't need to be outputting any information.
 #include <iostream>
@@ -91,7 +89,6 @@ void MultilineInputBox::setCursorPosition(size_t index)
 
 		if (m_cursor.getPosition().y + m_cursor.getSize().y > getSize().y - padding)
 		{
-			std::cout << "shifting up" << std::endl;
 			// Shift text up
 			float diff = m_cursor.getPosition().y - getSize().y + padding;
 			m_text.move(0, -diff);
@@ -99,7 +96,6 @@ void MultilineInputBox::setCursorPosition(size_t index)
 		}
 		else if (m_cursor.getPosition().y < padding)
 		{
-			std::cout << "shifting down" << std::endl;
 			// Shift text down
 			float diff = padding - m_cursor.getPosition().y;
 			m_text.move(0, diff);
@@ -291,8 +287,6 @@ void MultilineInputBox::draw(sf::RenderTarget& target, sf::RenderStates states) 
 	states.transform *= getTransform();
 	target.draw(m_box, states);
 
-#ifdef _WIN32
-	// Crop the text with GL Scissor
 	glEnable(GL_SCISSOR_TEST);
 
 	sf::Vector2f pos = getAbsolutePosition();
@@ -300,11 +294,6 @@ void MultilineInputBox::draw(sf::RenderTarget& target, sf::RenderStates states) 
 	target.draw(m_text, states);
 
 	glDisable(GL_SCISSOR_TEST);
-#else
-    // draw the text even though it won't have been cut.
-    // FIXME: this needs to go away when opengl can be linked
-	target.draw(m_text, states);
-#endif
 
 	// Show cursor if focused
 	if (isFocused())

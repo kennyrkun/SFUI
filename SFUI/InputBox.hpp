@@ -28,10 +28,9 @@ public:
 	InputBox(float width = 200.f);
 
 	void setText(const sf::String& string);
+	const sf::String& getText() const;
 
 	bool isEmpty() const;
-
-	const sf::String& getText() const;
 
 	void setCursorPosition(size_t index);
 	size_t getCursorPosition() const;

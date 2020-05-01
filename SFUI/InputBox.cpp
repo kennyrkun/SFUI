@@ -36,14 +36,14 @@ void InputBox::setText(const sf::String& string)
 	m_oldText = m_text.getString();
 }
 
-bool InputBox::isEmpty() const
-{
-	return m_text.getString().isEmpty();
-}
-
 const sf::String& InputBox::getText() const
 {
 	return m_text.getString();
+}
+
+bool InputBox::isEmpty() const
+{
+	return m_text.getString().isEmpty();
 }
 
 void InputBox::setCursorPosition(size_t index)
