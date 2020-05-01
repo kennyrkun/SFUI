@@ -44,6 +44,12 @@ public:
 	// true if widget took the focus, otherwise false
 	bool focusWidget(Widget* widget, State state = State::Focused);
 
+	bool focusNextWidget();
+	bool focusPreviousWidget();
+
+	Widget* getFirstWidget();
+	Widget* getLastWidget();
+
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -57,15 +63,10 @@ protected:
 	void onKeyReleased(sf::Keyboard::Key key) override;
 	void onTextEntered(sf::Uint32 unicode) override;
 
-	Layout* toLayout() override { return this; } // HACK: hack?
-
-	bool focusNextWidget();
-	bool focusPreviousWidget();
+	Layout* toLayout() override { return this; } // HACK: hack? great way to convert without casting tho
 
 	// Append a new widget in the container
 	Widget* push(Widget* widget);
-
-	Widget* getFirstWidget();
 
 private:
 	Widget*   m_first;

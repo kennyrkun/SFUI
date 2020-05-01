@@ -80,9 +80,129 @@ Widget* Layout::push(Widget* widget)
 	return widget;
 }
 
+
+bool Layout::focusWidget(Widget* widget, State state)
+{
+	if (widget != NULL)
+	{
+		// If another widget was already focused, remove focus
+		if (m_focus != NULL &&
+			m_focus != widget) // widget already focused
+		{
+			m_focus->setState(State::Default);
+			m_focus = NULL;
+		}
+
+		// Apply focus to widget
+		if (widget->isSelectable())
+		{
+			m_focus = widget;
+			widget->setState(state);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Layout::focusPreviousWidget()
+{
+	// If a sublayout is already focused
+	if (m_focus != NULL && m_focus->toLayout() != NULL)
+	{
+		if (m_focus->toLayout()->focusPreviousWidget())
+			return true;
+	}
+
+	Widget* start = m_focus != NULL ? m_focus->m_previous : m_last;
+	for (Widget* widget = start; widget != NULL; widget = widget->m_previous)
+	{
+		if (widget != NULL)
+		{
+			// I think this converts the widget to a layout
+			// then, if it was successfully converted,
+			// sets the focus to the next layout?
+			// otherwise, focuses an actual widget
+
+			Layout* container = widget->toLayout();
+			if (container != NULL)
+			{
+				if (container->focusPreviousWidget())
+				{
+					focusWidget(container);
+					return true;
+				}
+			}
+			else if (focusWidget(widget))
+			{
+				return true;
+			}
+		}
+	}
+
+	if (m_focus != NULL)
+		m_focus->setState(State::Default);
+	m_focus = NULL;
+	return false;
+}
+
+bool Layout::focusNextWidget()
+{
+	// If a sublayout is already focused
+	if (m_focus != NULL && m_focus->toLayout() != NULL)
+	{
+		if (m_focus->toLayout()->focusNextWidget())
+			return true;
+	}
+
+	Widget* start = m_focus != NULL ? m_focus->m_next : m_first;
+	for (Widget* widget = start; widget != NULL; widget = widget->m_next)
+	{
+		if (widget != NULL)
+		{
+			// I think this converts the widget to a layout
+			// then, if it was successfully converted,
+			// sets the focus to the next layout?
+			// otherwise, focuses an actual widget
+
+			Layout* container = widget->toLayout();
+			if (container != NULL)
+			{
+				if (container->focusNextWidget())
+				{
+					focusWidget(container);
+					return true;
+				}
+			}
+			else if (focusWidget(widget))
+			{
+				return true;
+			}
+		}
+	}
+
+	if (m_focus != NULL)
+		m_focus->setState(State::Default);
+	m_focus = NULL;
+	return false;
+}
+
 Widget* Layout::getFirstWidget()
 {
 	return m_first;
+}
+
+Widget* Layout::getLastWidget()
+{
+	return m_last;
+}
+
+void Layout::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	states.transform *= getTransform();
+
+	for (const Widget* widget = m_first; widget != NULL; widget = widget->m_next)
+		target.draw(*widget, states);
 }
 
 // Callbacks
@@ -231,120 +351,6 @@ void Layout::onTextEntered(sf::Uint32 unicode)
 	{
 		m_focus->onTextEntered(unicode);
 	}
-}
-
-void Layout::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	states.transform *= getTransform();
-
-	for (const Widget* widget = m_first; widget != NULL; widget = widget->m_next)
-		target.draw(*widget, states);
-}
-
-bool Layout::focusWidget(Widget* widget, State state)
-{
-	if (widget != NULL)
-	{
-		// If another widget was already focused, remove focus
-		if (m_focus != NULL &&
-			m_focus != widget) // widget already focused
-		{
-			m_focus->setState(State::Default);
-			m_focus = NULL;
-		}
-
-		// Apply focus to widget
-		if (widget->isSelectable())
-		{
-			m_focus = widget;
-			widget->setState(state);
-			return true;
-		}
-	}
-
-	return false;
-}
-
-bool Layout::focusPreviousWidget()
-{
-	// If a sublayout is already focused
-	if (m_focus != NULL && m_focus->toLayout() != NULL)
-	{
-		if (m_focus->toLayout()->focusPreviousWidget())
-			return true;
-	}
-
-	Widget* start = m_focus != NULL ? m_focus->m_previous : m_last;
-	for (Widget* widget = start; widget != NULL; widget = widget->m_previous)
-	{
-		if (widget != NULL)
-		{
-			// I think this converts the widget to a layout
-			// then, if it was successfully converted,
-			// sets the focus to the next layout?
-			// otherwise, focuses an actual widget
-
-			Layout* container = widget->toLayout();
-			if (container != NULL)
-			{
-				if (container->focusPreviousWidget())
-				{
-					focusWidget(container);
-					return true;
-				}
-			}
-			else if (focusWidget(widget))
-			{
-				return true;
-			}
-		}
-	}
-
-	if (m_focus != NULL)
-		m_focus->setState(State::Default);
-	m_focus = NULL;
-	return false;
-}
-
-bool Layout::focusNextWidget()
-{
-	// If a sublayout is already focused
-	if (m_focus != NULL && m_focus->toLayout() != NULL)
-	{
-		if (m_focus->toLayout()->focusNextWidget())
-			return true;
-	}
-
-	Widget* start = m_focus != NULL ? m_focus->m_next : m_first;
-	for (Widget* widget = start; widget != NULL; widget = widget->m_next)
-	{
-		if (widget != NULL)
-		{
-			// I think this converts the widget to a layout
-			// then, if it was successfully converted,
-			// sets the focus to the next layout?
-			// otherwise, focuses an actual widget
-
-			Layout* container = widget->toLayout();
-			if (container != NULL)
-			{
-				if (container->focusNextWidget())
-				{
-					focusWidget(container);
-					return true;
-				}
-			}
-			else if (focusWidget(widget))
-			{
-				return true;
-			}
-		}
-	}
-
-	if (m_focus != NULL)
-		m_focus->setState(State::Default);
-	m_focus = NULL;
-	return false;
 }
 
 }

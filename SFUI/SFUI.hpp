@@ -8,13 +8,13 @@
 #include "CheckBox.hpp"
 #include "ComboBox.hpp"
 #include "Image.hpp"
+#include "InputBox.hpp"
 #include "Label.hpp"
+#include "MultilineInputBox.hpp"
 #include "OptionsBox.hpp"
 #include "ProgressBar.hpp"
 #include "Slider.hpp"
 #include "SpriteButton.hpp"
-#include "InputBox.hpp"
-#include "MultilineInputBox.hpp"
 
 // TODO: look into making Widgets more easily added on to
 // ComboBox
@@ -33,7 +33,7 @@
 
 namespace SFUI
 {
-	extern const int LIB_VERSION;
+	extern const int revision;
 }
 
 #endif // !SFUI_HPP

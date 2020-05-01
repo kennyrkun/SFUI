@@ -2,5 +2,5 @@
 
 namespace SFUI
 {
-	const int LIB_VERSION = 3;
+	const int revision = 6;
 }

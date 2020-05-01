@@ -1,5 +1,5 @@
-#include "SFUI.hpp"
-#include "Theme.hpp"
+#include <SFUI/SFUI.hpp>
+#include <SFUI/Theme.hpp>
 
 // This is an example program uitlising every control in SFUI.
 // It is intended to be reviewed, and used as a learning tool
@@ -8,8 +8,12 @@
 // Resources are not provided twice here, if you are missing
 // resources copy the or symlink the folder in SFUI.
 
+#include <iostream>
+
 int main()
 {
+	//std::cout << "SFUI Version: " << SFUI::revision << std::endl;
+
 	enum Callbacks
 	{
 		TEXT,
@@ -22,13 +26,10 @@ int main()
 		NEW_BUTTON,
 		VSLIDER,
 		THEME_TEXTURE,
-		TERMINATE,
-		QUIT
+		EXIT,
 	};
 
-	bool doTerminateProgram(false);
-
-	do
+	while (true)
 	{
 		sf::RenderWindow window(sf::VideoMode(640, 480), "SFUI 2", sf::Style::Titlebar | sf::Style::Close);
 
@@ -86,7 +87,7 @@ int main()
 		form->addRow("Color", opt, Callbacks::COLOR);
 
 		// OptionsBox for color
-		SFUI::ComboBox<sf::Color>* optcb = new SFUI::ComboBox<sf::Color>(&window);
+		SFUI::ComboBox<sf::Color>* optcb = new SFUI::ComboBox<sf::Color>();
 		optcb->addItem("Red", sf::Color::Red);
 		optcb->addItem("Blue", sf::Color::Blue);
 		optcb->addItem("Green", sf::Color::Green);
@@ -131,14 +132,13 @@ int main()
 		SFUI::Slider* vslider = new SFUI::Slider(100, SFUI::Slider::Type::Vertical);
 		hbox->add(vslider, Callbacks::VSLIDER);
 
-		SFUI::CheckBox* terminateProgram = new SFUI::CheckBox();
-		form->addRow("Terminate Program?", terminateProgram, Callbacks::TERMINATE);
-
-		menu.addButton("Quit", Callbacks::QUIT);
+		menu.addButton("Quit", Callbacks::EXIT);
 
 		sf::Text text(textbox->getText(), SFUI::Theme::getFont());
 		text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 		text.setPosition(window.getSize().x / 2, 400);
+
+		bool quit = false;
 
 		while (window.isOpen())
 		{
@@ -186,8 +186,8 @@ int main()
 					pbar1->setValue(sliderScale->getValue());
 					break;
 				}
-				case Callbacks::QUIT:
-					window.close();
+				case Callbacks::EXIT:
+					quit = true;
 					break;
 				case Callbacks::VSLIDER:
 					pbar->setValue(vslider->getValue());
@@ -197,12 +197,16 @@ int main()
 					break;
 				case Callbacks::THEME_TEXTURE:
 					SFUI::Theme::loadTexture(changeTextureBox->getText());
-				case Callbacks::TERMINATE:
-					doTerminateProgram = !doTerminateProgram;
 				}
 
 				if (event.type == sf::Event::Closed)
-					window.close();
+					quit = true;
+			}
+
+			if (quit)
+			{
+				window.close();
+				break;
 			}
 
 			window.clear(SFUI::Theme::windowBgColor);
@@ -212,7 +216,7 @@ int main()
 
 			window.display();
 		}
-	} while (!doTerminateProgram);
+	}
 
 	return EXIT_SUCCESS;
 }

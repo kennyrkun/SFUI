@@ -1,5 +1,5 @@
-#ifndef SFUI_ITEMBOX_HPP
-#define SFUI_ITEMBOX_HPP
+#ifndef SFUI_ITEM_BOX_HPP
+#define SFUI_ITEM_BOX_HPP
 
 #include "Box.hpp"
 
@@ -19,7 +19,7 @@ public:
 	void applyState(State state);
 
 	// returns the Item in the Box
-	inline T& item() { return m_item;} // HACK: is this a hack?
+	inline T& item() { return m_item; } // HACK: is this a hack?
 	inline const T& item() const { return m_item;} // not sure why this is like this
 
 private:
