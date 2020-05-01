@@ -27,7 +27,7 @@ OptionsBox<T>::OptionsBox() :
 }
 
 template <class T>
-void OptionsBox<T>::addItem(const sf::String& label, const T& value, bool select)
+void OptionsBox<T>::addItem(const sf::String& label, const T& value)
 {
 	m_items.push_back(Item(label, value));
 
@@ -43,11 +43,7 @@ void OptionsBox<T>::addItem(const sf::String& label, const T& value, bool select
 		setSize(m_box.getSize());
 	}
 
-
-	if (select)
-		selectItem(m_items.size() - 1);
-	else
-		m_box.centerText(m_box.item());
+	selectItem(m_items.size() - 1);
 }
 
 template <class T>
@@ -59,6 +55,14 @@ void OptionsBox<T>::selectItem(size_t item_index)
 		m_box.item().setString(m_items[item_index].label);
 		m_box.centerText(m_box.item());
 	}
+}
+
+template <class T>
+void OptionsBox<T>::selectItem(const sf::String& label)
+{
+	for (size_t i = 0; i < m_items.size(); i++)
+		if (m_items[i].label == label)
+			selectItem(i);
 }
 
 template <class T>
@@ -152,7 +156,6 @@ void OptionsBox<T>::onMousePressed(float x, float y)
 {
 	if (m_arrow_left.containsPoint(x, y))
 		m_arrow_left.press();
-
 	else if (m_arrow_right.containsPoint(x, y))
 		m_arrow_right.press();
 }

@@ -1,5 +1,5 @@
-#ifndef SFUI_OPTIONSBOX_HPP
-#define SFUI_OPTIONSBOX_HPP
+#ifndef SFUI_OPTIONS_BOX_HPP
+#define SFUI_OPTIONS_BOX_HPP
 
 #include "Widget.hpp"
 #include "Utils/Arrow.hpp"
@@ -20,11 +20,15 @@ public:
 	// label: displayed label when selected
 	// value: value associated
 	// select: change the selected value to this when added
-	void addItem(const sf::String& label, const T& value, bool select = false);
+	void addItem(const sf::String& label, const T& value);
 
 	// Make an item the current one
 	// item_index: position of the item in the list
 	void selectItem(size_t item_index);
+
+	// Make an item the current one
+	// label: the label of the item in the list
+	void selectItem(const sf::String& label);
 
 	// Get the value of the selected item
 	const T& getSelectedValue() const;
@@ -59,8 +63,7 @@ private:
 		T value;
 	};
 
-	typedef std::vector<Item> ItemVector;
-	ItemVector         m_items;
+	std::vector<Item>  m_items;
 	size_t             m_current_index;
 
 	// Visual components
@@ -73,4 +76,4 @@ private:
 
 #include "OptionsBox.inl"
 
-#endif // SFUI_OPTIONSBOX_HPP
+#endif // SFUI_OPTIONS_BOX_HPP
